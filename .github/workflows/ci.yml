@@ -1,5 +1,12 @@
 name: "Export to itch.io"
-on: [workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 env:
   # This should match what's in the export_presets.cfg
