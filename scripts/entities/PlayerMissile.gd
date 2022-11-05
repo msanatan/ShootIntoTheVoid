@@ -23,3 +23,7 @@ func _process(delta):
 
 func _on_FollowCursorTimer_timeout():
     is_following_mouse = true
+
+
+func _on_DestroyTimer_timeout():
+    queue_free()
