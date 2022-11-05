@@ -1,5 +1,7 @@
 extends Area2D
 
+signal missile_destroyed
+
 export (int) var speed = 200
 var velocity = Vector2(0, 0)
 var angle = 0
@@ -26,4 +28,5 @@ func _on_FollowCursorTimer_timeout():
 
 
 func _on_DestroyTimer_timeout():
+    emit_signal("missile_destroyed")
     queue_free()
