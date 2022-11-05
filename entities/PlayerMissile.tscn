@@ -9,6 +9,7 @@ extents = Vector2( 32, 16 )
 [node name="PlayerMissile" type="Area2D"]
 scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 2 )
+speed = 250
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
