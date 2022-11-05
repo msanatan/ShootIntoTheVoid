@@ -4,7 +4,6 @@ export (int) var speed = 200
 var velocity = Vector2(0, 0)
 
 func _ready():
-    print_debug("Missile launched")
     velocity = Vector2.RIGHT
 
 func _process(delta):
