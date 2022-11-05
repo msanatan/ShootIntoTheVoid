@@ -2,8 +2,8 @@
 
 [ext_resource path="res://images/bg.png" type="Texture" id=1]
 [ext_resource path="res://images/cockpit.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Bridge.gd" type="Script" id=3]
-[ext_resource path="res://scenes/FPSLabel.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Bridge.gd" type="Script" id=3]
+[ext_resource path="res://scripts/FPSLabel.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -129,7 +129,7 @@ shader_param/size = 10.0
 shader_param/starscale = 500.0
 shader_param/prob = 0.98
 
-[node name="Root" type="Node2D"]
+[node name="Bridge" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Background" type="Sprite" parent="."]
