@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Shoot Into The Void"
-run/main_scene="res://scenes/Bridge.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
 [display]
