@@ -9,3 +9,5 @@
 position = Vector2( 630, 360 )
 
 [node name="MissileManager" parent="." instance=ExtResource( 2 )]
+
+[connection signal="fire_missile" from="Player" to="MissileManager" method="_on_Player_fire_missile"]
