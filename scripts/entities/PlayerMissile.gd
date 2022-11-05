@@ -28,5 +28,6 @@ func _on_FollowCursorTimer_timeout():
 
 
 func _on_DestroyTimer_timeout():
+    print_debug("Missile destroyed")
     emit_signal("missile_destroyed")
     queue_free()
