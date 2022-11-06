@@ -2,7 +2,7 @@ extends Position2D
 
 onready var screen_size = get_viewport().get_visible_rect().size
 var spawn_locs = Array()
-var min_dist = 50
+var min_dist = 20
 var rand = RandomNumberGenerator.new()
 
 export(NodePath) var player
@@ -12,7 +12,7 @@ func _ready():
 	rand.randomize()
 	var player_scene = get_node(player)
 	if player_scene != null:
-		var player_node = player_scene.get_node("Area2D/Sprite")
+		var player_node = player_scene.get_node("Sprite")
 		spawn_locs.append({
 			location = player_scene.transform.get_origin(),
 			width = player_node.texture.get_width() * player_scene.transform.get_scale().x,
@@ -41,8 +41,7 @@ func spawn(amount, enemy_path):
 func spawnRandomFromList(amount, list):
 	for _i in range(0, amount):
 		var random_enemy = list[rand.randi_range(0, list.size()-1)];
-		var enemy_scene = load(random_enemy)
-		var enemy = createInstance(enemy_scene)
+		var enemy = createInstance(random_enemy)
 			
 func isOverlapping(x1, y1, w1, h1, x2, y2, w2, h2):
 	var r1 = Rect2(x1 - w1/2,y1 - h1/2,w1,h1)
@@ -50,7 +49,7 @@ func isOverlapping(x1, y1, w1, h1, x2, y2, w2, h2):
 	return r1.intersects(r2)
 		
 func getNextSpawnLoc(enemy):
-	var sprite_node = enemy.get_node("Area2D/Sprite")
+	var sprite_node = enemy.get_node("Sprite")
 	var w = sprite_node.texture.get_width() * enemy.transform.get_scale().x
 	var h = sprite_node.texture.get_height() * enemy.transform.get_scale().y
 	var max_attempts = 10

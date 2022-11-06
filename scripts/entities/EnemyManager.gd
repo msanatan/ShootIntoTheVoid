@@ -1,6 +1,11 @@
 extends Node
 
 export(NodePath) var spawner
+export(Array, PackedScene) var easy_enemy_list
+export(Array, PackedScene) var medium_enemy_list
+export(Array, PackedScene) var hard_enemy_list
+export(Array, PackedScene) var small_obstacle_list
+export(Array, PackedScene) var large_obstacle_list
 var spawner_node = null
 
 # Called when the node enters the scene tree for the first time.
@@ -10,9 +15,10 @@ func _ready():
 		printerr("Enemy Spawner is not assigned!")
 		get_tree().quit()
 		
-func spawnEnemiesForLevel(level):
-	#spawner_node.spawn(100, "res://scenes/entities/enemies/TestEnemy.tscn")
-	spawner_node.spawnRandomFromList(20, ["res://scenes/entities/enemies/TestEnemy.tscn", "res://scenes/entities/enemies/TestEnemy2.tscn"])
+func spawnObjectsForLevel(level):
+	spawner_node.spawnRandomFromList(5, easy_enemy_list)
+	spawner_node.spawnRandomFromList(5, small_obstacle_list)
+	spawner_node.spawnRandomFromList(2, large_obstacle_list)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
