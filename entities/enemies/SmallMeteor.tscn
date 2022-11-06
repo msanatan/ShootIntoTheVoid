@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
 
-[node name="SmallMeteor" type="Area2D"]
+[node name="Meteor" type="Area2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://images/entities/LargeMeteor.png" type="Texture" id=1]
+[ext_resource path="res://images/entities/MediumMeteor.png" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 48.6621
+radius = 24.0
 
 [node name="Meteor" type="Area2D"]
 

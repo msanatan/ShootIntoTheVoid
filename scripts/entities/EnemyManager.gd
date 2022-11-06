@@ -5,6 +5,7 @@ export(Array, PackedScene) var easy_enemy_list
 export(Array, PackedScene) var medium_enemy_list
 export(Array, PackedScene) var hard_enemy_list
 export(Array, PackedScene) var small_obstacle_list
+export(Array, PackedScene) var medium_obstacle_list
 export(Array, PackedScene) var large_obstacle_list
 var spawner_node = null
 
@@ -18,6 +19,7 @@ func _ready():
 func spawnObjectsForLevel(level):
 	spawner_node.spawnRandomFromList(5, easy_enemy_list, true)
 	spawner_node.spawnRandomFromList(5, small_obstacle_list, false)
+	spawner_node.spawnRandomFromList(2, medium_obstacle_list, false)
 	spawner_node.spawnRandomFromList(2, large_obstacle_list, false)
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/PlayerMissile.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://entities/enemies/EasyEnemy2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/enemies/EnemyManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=9]
+[ext_resource path="res://entities/enemies/MediumMeteor.tscn" type="PackedScene" id=10]
 
 [node name="Main" type="Node"]
 script = ExtResource( 9 )
@@ -21,6 +22,7 @@ missile = ExtResource( 2 )
 spawner = NodePath("../Spawner")
 easy_enemy_list = [ ExtResource( 6 ), ExtResource( 7 ) ]
 small_obstacle_list = [ ExtResource( 3 ) ]
+medium_obstacle_list = [ ExtResource( 10 ) ]
 large_obstacle_list = [ ExtResource( 4 ) ]
 
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
