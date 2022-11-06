@@ -16,9 +16,9 @@ func _ready():
 		get_tree().quit()
 		
 func spawnObjectsForLevel(level):
-	spawner_node.spawnRandomFromList(5, easy_enemy_list)
-	spawner_node.spawnRandomFromList(5, small_obstacle_list)
-	spawner_node.spawnRandomFromList(2, large_obstacle_list)
+	spawner_node.spawnRandomFromList(5, easy_enemy_list, true)
+	spawner_node.spawnRandomFromList(5, small_obstacle_list, false)
+	spawner_node.spawnRandomFromList(2, large_obstacle_list, false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

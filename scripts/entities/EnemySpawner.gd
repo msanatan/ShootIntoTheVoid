@@ -6,11 +6,12 @@ var min_dist = 20
 var rand = RandomNumberGenerator.new()
 
 export(NodePath) var player
+var player_scene = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rand.randomize()
-	var player_scene = get_node(player)
+	player_scene = get_node(player)
 	if player_scene != null:
 		var player_node = player_scene.get_node("Sprite")
 		spawn_locs.append({
@@ -22,26 +23,28 @@ func _ready():
 		printerr("Player is not assigned!")
 		get_tree().quit()
 		
-func createInstance(enemy_scene):
+func createInstance(enemy_scene, rotate_to_player):
 	var enemy = enemy_scene.instance()
 	var next_loc = getNextSpawnLoc(enemy)
 	if next_loc.x != -1 && next_loc.y != -1:
 		enemy.position = next_loc
+		if rotate_to_player:
+			enemy.rotation = (player_scene.global_position - enemy.global_position).angle() + PI/2
 		add_child(enemy)
 		return enemy
 	else:
 		enemy.queue_free()
 	
-func spawn(amount, enemy_path):
+func spawn(amount, enemy_path, rotate_to_player):
 	var enemy_scene = load(enemy_path)
 	
 	for _i in range(0, amount):
-		var enemy = createInstance(enemy_scene)
+		var enemy = createInstance(enemy_scene, rotate_to_player)
 			
-func spawnRandomFromList(amount, list):
+func spawnRandomFromList(amount, list, rotate_to_player):
 	for _i in range(0, amount):
 		var random_enemy = list[rand.randi_range(0, list.size()-1)];
-		var enemy = createInstance(random_enemy)
+		var enemy = createInstance(random_enemy, rotate_to_player)
 			
 func isOverlapping(x1, y1, w1, h1, x2, y2, w2, h2):
 	var r1 = Rect2(x1 - w1/2,y1 - h1/2,w1,h1)
