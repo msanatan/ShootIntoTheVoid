@@ -18,9 +18,15 @@ func _ready():
 		
 func spawnObjectsForLevel(level):
 	spawner_node.spawnRandomFromList(5, easy_enemy_list, true)
+	spawner_node.spawnRandomFromList(2, medium_enemy_list, true)
 	spawner_node.spawnRandomFromList(5, small_obstacle_list, false)
 	spawner_node.spawnRandomFromList(2, medium_obstacle_list, false)
 	spawner_node.spawnRandomFromList(2, large_obstacle_list, false)
+	
+	enemyShoot()
+	
+func enemyShoot():
+	get_tree().call_group("enemy", "shoot", spawner_node.player_scene.global_position)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

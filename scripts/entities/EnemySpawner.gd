@@ -8,6 +8,8 @@ var rand = RandomNumberGenerator.new()
 export(NodePath) var player
 var player_scene = null;
 
+export(PackedScene) var enemy_missile
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rand.randomize()
@@ -42,9 +44,10 @@ func spawn(amount, enemy_path, rotate_to_player):
 		var enemy = createInstance(enemy_scene, rotate_to_player)
 			
 func spawnRandomFromList(amount, list, rotate_to_player):
-	for _i in range(0, amount):
-		var random_enemy = list[rand.randi_range(0, list.size()-1)];
-		var enemy = createInstance(random_enemy, rotate_to_player)
+	if list.size() > 0:
+		for _i in range(0, amount):
+			var random_enemy = list[rand.randi_range(0, list.size()-1)];
+			var enemy = createInstance(random_enemy, rotate_to_player)
 			
 func isOverlapping(x1, y1, w1, h1, x2, y2, w2, h2):
 	var r1 = Rect2(x1 - w1/2,y1 - h1/2,w1,h1)
