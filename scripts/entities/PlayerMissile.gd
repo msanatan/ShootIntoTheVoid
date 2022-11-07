@@ -39,6 +39,12 @@ func _on_FollowCursorTimer_timeout():
 
 
 func _on_DestroyTimer_timeout():
-	print_debug("Missile destroyed")
+	print_debug("Missile time ran out")
+	emit_signal("missile_destroyed")
+	queue_free()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	print_debug("Missile out of bounds")
 	emit_signal("missile_destroyed")
 	queue_free()
