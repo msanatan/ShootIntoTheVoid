@@ -9,7 +9,7 @@ func _input(event):
 		print_debug("Firing missile")
 		var spawned_missile = missile.instance()
 		get_tree().get_root().add_child(spawned_missile)
-		spawned_missile.position = get_position()
+		spawned_missile.position = $BulletSpawnPoint.global_position
 		spawned_missile.look_at(get_global_mouse_position())
 		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
 
