@@ -42,6 +42,7 @@ func _on_AnimationPlayer_animation_finished(anim_name:String):
 		spawned_missile.connect("enemy_hit", self, "_on_PlayerMissile_enemy_hit")
 	
 func _on_PlayerMissile_enemy_hit(enemy):
+	enemy.kill()
 	increaseScore(100)
 	
 func increaseScore(amount):

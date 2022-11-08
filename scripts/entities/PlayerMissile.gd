@@ -5,6 +5,8 @@ signal enemy_hit
 signal obstacle_hit
 
 export (int) var speed = 200
+export (PackedScene) var explosion
+
 var velocity = Vector2(0, 0)
 var angle = 0
 var is_following_mouse = false
@@ -57,6 +59,9 @@ func _on_PlayerMissile_area_entered(area):
 	if node_name == "Enemy":
 		emit_signal("enemy_hit", area)
 	elif node_name == "Obstacle":
+		var spawned_explosion = explosion.instance()
+		get_tree().get_root().add_child(spawned_explosion)
+		spawned_explosion.position = get_position()
 		emit_signal("obstacle_hit", area)
 		emit_signal("missile_destroyed")
 		queue_free()

@@ -1,16 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/effects/Thruster.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/entities/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://entities/enemies/EnemyMissile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/effects/EnemyExplosion.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
+resource_local_to_scene = true
 radius = 24.0
 height = 0.0
 
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 script = ExtResource( 2 )
 missile = ExtResource( 3 )
+explosion = ExtResource( 4 )
 
 [node name="Thruster" parent="." instance=ExtResource( 1 )]
 position = Vector2( -31.088, 49.872 )
