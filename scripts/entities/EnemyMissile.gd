@@ -17,5 +17,5 @@ func _process(delta):
 	translate(velocity)
 
 func _on_EnemyMissile_body_entered(body):
-	emit_signal("enemy_missile_destroyed")
+	emit_signal("enemy_missile_destroyed", body)
 	queue_free()

@@ -30,3 +30,18 @@ large_obstacle_list = [ ExtResource( 4 ) ]
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
 player = NodePath("../Player")
 enemy_missile = ExtResource( 11 )
+
+[node name="HealthLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 48.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="ScoreLabel" type="Label" parent="."]
+margin_left = 1144.0
+margin_top = 8.0
+margin_right = 1208.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+align = 2
