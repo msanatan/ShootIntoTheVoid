@@ -73,3 +73,4 @@ anims/FadeScreenToBlack = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
+[connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]

@@ -7,3 +7,7 @@ func _ready():
 
 func _on_Player_fire_missile():
 	$CanvasAnimationPlayer.play("FadeScreenToBlack")
+
+
+func _on_Player_missile_destroyed():
+	$CanvasAnimationPlayer.play_backwards("FadeScreenToBlack")

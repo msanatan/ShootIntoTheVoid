@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
 signal fire_missile
-export (PackedScene) var missile
+signal missile_destroyed
 
+export (PackedScene) var missile
 var is_shooting = false
 
 func _input(event):
@@ -24,3 +25,4 @@ func _physics_process(delta):
 
 func _on_PlayerMissile_missile_destroyed():
 	is_shooting = false
+	emit_signal("missile_destroyed")
