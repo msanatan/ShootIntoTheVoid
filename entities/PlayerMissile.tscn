@@ -41,6 +41,7 @@ texture = ExtResource( 3 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 
+[connection signal="area_entered" from="." to="." method="_on_PlayerMissile_area_entered"]
 [connection signal="timeout" from="FollowCursorTimer" to="." method="_on_FollowCursorTimer_timeout"]
 [connection signal="timeout" from="DestroyTimer" to="." method="_on_DestroyTimer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

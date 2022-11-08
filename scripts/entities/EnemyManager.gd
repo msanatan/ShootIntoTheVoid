@@ -26,7 +26,7 @@ func spawnObjectsForLevel(level):
 	enemyShoot()
 	
 func enemyShoot():
-	get_tree().call_group("enemy", "shoot", spawner_node.player_scene.global_position)
+	get_tree().call_group("enemy", "shoot", spawner_node.player_scene)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

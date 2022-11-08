@@ -73,5 +73,20 @@ enemy_missile = ExtResource( 11 )
 anims/FadeScreenToBlack = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
+[node name="HealthLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 48.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="ScoreLabel" type="Label" parent="."]
+margin_left = 1144.0
+margin_top = 8.0
+margin_right = 1208.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+align = 2
+
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
 [connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]

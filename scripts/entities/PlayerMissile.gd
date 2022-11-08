@@ -1,6 +1,8 @@
 extends Area2D
 
 signal missile_destroyed
+signal enemy_hit
+signal obstacle_hit
 
 export (int) var speed = 200
 var velocity = Vector2(0, 0)
@@ -48,3 +50,13 @@ func _on_VisibilityNotifier2D_screen_exited():
 	print_debug("Missile out of bounds")
 	emit_signal("missile_destroyed")
 	queue_free()
+
+
+func _on_PlayerMissile_area_entered(area):
+	var node_name = str(area.name.replace("@", "").replace(str(int(area.name)), ""))
+	if node_name == "Enemy":
+		emit_signal("enemy_hit", area)
+	elif node_name == "Obstacle":
+		emit_signal("obstacle_hit", area)
+		emit_signal("missile_destroyed")
+		queue_free()
