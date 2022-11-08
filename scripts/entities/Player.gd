@@ -1,12 +1,15 @@
 extends KinematicBody2D
 
-var is_shooting = false
+signal fire_missile
 export (PackedScene) var missile
+
+var is_shooting = false
 
 func _input(event):
 	if event.is_action_pressed("attack") and not is_shooting:
-		is_shooting = true
 		print_debug("Firing missile")
+		is_shooting = true
+		emit_signal("fire_missile")
 		var spawned_missile = missile.instance()
 		get_tree().get_root().add_child(spawned_missile)
 		spawned_missile.position = $BulletSpawnPoint.global_position
