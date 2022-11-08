@@ -11,12 +11,7 @@ func _input(event):
 		print_debug("Firing missile")
 		is_shooting = true
 		emit_signal("fire_missile")
-		$AnimationPlayer.play("ToggleLight")
-		var spawned_missile = missile.instance()
-		get_tree().get_root().add_child(spawned_missile)
-		spawned_missile.position = $BulletSpawnPoint.global_position
-		spawned_missile.look_at(get_global_mouse_position())
-		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
+		$AnimationPlayer.play("LightsOn")
 
 
 func _physics_process(delta):
@@ -27,4 +22,13 @@ func _physics_process(delta):
 func _on_PlayerMissile_missile_destroyed():
 	is_shooting = false
 	emit_signal("missile_destroyed")
-	$AnimationPlayer.play_backwards("ToggleLight")
+	$AnimationPlayer.play("LightsOff")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name:String):
+	if anim_name == "LightsOn":
+		var spawned_missile = missile.instance()
+		get_tree().get_root().add_child(spawned_missile)
+		spawned_missile.position = $BulletSpawnPoint.global_position
+		spawned_missile.look_at(get_global_mouse_position())
+		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
