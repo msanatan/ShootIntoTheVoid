@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/PlayerMissile.tscn" type="PackedScene" id=2]
@@ -12,8 +12,43 @@
 [ext_resource path="res://entities/enemies/MediumMeteor.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/enemies/EnemyMissile.tscn" type="PackedScene" id=11]
 
+[sub_resource type="Animation" id=1]
+resource_name = "FadeScreenToBlack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Main" type="Node"]
 script = ExtResource( 9 )
+
+[node name="BackgroundColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.113725, 0.101961, 0.101961, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 630, 360 )
@@ -30,3 +65,11 @@ large_obstacle_list = [ ExtResource( 4 ) ]
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
 player = NodePath("../Player")
 enemy_missile = ExtResource( 11 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="CanvasAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeScreenToBlack = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
