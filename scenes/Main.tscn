@@ -79,21 +79,6 @@ player = NodePath("../Player")
 anims/FadeScreenToBlack = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[node name="HealthLabel" type="Label" parent="."]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 48.0
-margin_bottom = 22.0
-rect_scale = Vector2( 2, 2 )
-
-[node name="ScoreLabel" type="Label" parent="."]
-margin_left = 1024.0
-margin_top = 8.0
-margin_right = 1148.0
-margin_bottom = 22.0
-rect_scale = Vector2( 2, 2 )
-align = 2
-
 [node name="DebugTools" type="CanvasLayer" parent="."]
 visible = false
 
@@ -102,6 +87,23 @@ margin_right = 48.0
 margin_bottom = 14.0
 text = "Test"
 script = ExtResource( 13 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+margin_left = 1024.0
+margin_top = 8.0
+margin_right = 1148.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+align = 2
+
+[node name="HealthLabel" type="Label" parent="UI"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 48.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
 
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
 [connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]
