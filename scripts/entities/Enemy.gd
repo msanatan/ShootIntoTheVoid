@@ -17,6 +17,11 @@ func shoot(player):
 
 func _on_EnemyMissile_missile_destroyed(player):
 	player.decreaseHealth(10)
+	var main = get_tree().get_root().get_node("Main")
+	if main:
+		var enemyManager = main.get_node("EnemyManager")
+		if enemyManager:
+			enemyManager.determineTurnEnd()
 	
 func kill():
 	var spawned_explosion = explosion.instance()

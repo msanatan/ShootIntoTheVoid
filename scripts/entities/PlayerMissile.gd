@@ -57,7 +57,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_PlayerMissile_area_entered(area):
 	var node_name = str(area.name.replace("@", "").replace(str(int(area.name)), ""))
 	if node_name == "Enemy":
-		emit_signal("enemy_hit", area)
+		emit_signal("enemy_hit", area, self)
 	elif node_name == "Obstacle":
 		var spawned_explosion = explosion.instance()
 		get_tree().get_root().add_child(spawned_explosion)

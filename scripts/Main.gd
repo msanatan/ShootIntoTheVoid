@@ -1,8 +1,10 @@
 extends Node
 
+export var level = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$EnemyManager.spawnObjectsForLevel(1)
+	$EnemyManager.spawnObjectsForLevel(level)
 
 	$HealthLabel.set_text("HP: "+str($Player.health))
 	$ScoreLabel.set_text("Score: 0")
@@ -10,6 +12,15 @@ func _ready():
 	$Player.connect("score_increased", self, "_on_Player_score_increased")
 	$PlayerMovementArea.position = $Player.position
 	$PlayerMovementArea.visible = true
+	$Player.connect("player_turn_ended", self, "_on_Player_turn_ended")
+	$Player.connect("level_cleared", self, "_on_level_cleared")
+	$Player.connect("player_died", self, "_on_game_over")
+
+func _on_level_cleared():
+	print("level cleared")
+
+func _on_game_over():
+	print("game over")
 
 func _on_Player_health_decreased(health):
 	$HealthLabel.set_text("HP: "+str(health))
@@ -17,6 +28,9 @@ func _on_Player_health_decreased(health):
 
 func _on_Player_score_increased(score):
 	$ScoreLabel.set_text("Score: "+str(score))
+
+func _on_Player_turn_ended():
+	$EnemyManager.enemyShoot()
 
 
 func _on_Player_fire_missile():

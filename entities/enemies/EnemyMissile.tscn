@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32.5, 15 )
 
-[node name="EnemyMissile" type="Area2D"]
+[node name="EnemyMissile" type="Area2D" groups=["enemy_missile"]]
 scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 2 )
 explosion = ExtResource( 3 )
