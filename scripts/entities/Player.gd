@@ -80,7 +80,7 @@ func increase_score(amount):
 
 func decrease_health(amount):
 	health -= amount
-	if health < 0:
+	if health <= 0:
 		health = 0
 		emit_signal("player_died")
 		var spawned_explosion = explosion.instance()

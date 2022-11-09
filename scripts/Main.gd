@@ -6,8 +6,13 @@ export var level = 1
 func _ready():
 	$EnemyManager.spawn_objects_for_level(level)
 
-	$UI/HealthLabel.set_text("HP: "+str($Player.health))
-	$UI/ScoreLabel.set_text("Score: 0")
+	$UI/HealthLabel.set_text("LIFE: "+str($Player.health))
+	$UI/ScoreLabel.set_text("SCORE: 0")
+	$UI/LevelCompleteLabel.hide()
+	$UI/GameOverLabel.hide()
+	$UI/DemoLabel.hide()
+	$UI/RestartButton.hide()
+	
 	$Player.connect("health_decreased", self, "_on_Player_health_decreased")
 	$Player.connect("score_increased", self, "_on_Player_score_increased")
 	$PlayerMovementArea.position = $Player.position
@@ -23,19 +28,21 @@ func _process(_delta):
 
 
 func _on_level_cleared():
-	print("level cleared")
-
+	$UI/LevelCompleteLabel.show()
+	$UI/DemoLabel.show()
+	$UI/RestartButton.show()
 
 func _on_game_over():
-	print("game over")
-
+	$UI/GameOverLabel.show()
+	$UI/DemoLabel.show()
+	$UI/RestartButton.show()	
 
 func _on_Player_health_decreased(health):
-	$UI/HealthLabel.set_text("HP: "+str(health))
+	$UI/HealthLabel.set_text("LIFE: "+str(health))
 
 
 func _on_Player_score_increased(score):
-	$UI/ScoreLabel.set_text("Score: "+str(score))
+	$UI/ScoreLabel.set_text("SCORE: "+str(score))
 
 func _on_Player_turn_ended():
 	$EnemyManager.enemy_shoot()
@@ -49,3 +56,7 @@ func _on_Player_fire_missile():
 func _on_Player_missile_destroyed():
 	$PlayerMovementArea.visible = true
 	$CanvasAnimationPlayer.play_backwards("FadeScreenToBlack")
+
+
+func _on_RestartButton_pressed():
+	get_tree().reload_current_scene()
