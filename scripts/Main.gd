@@ -16,11 +16,19 @@ func _ready():
     $Player.connect("level_cleared", self, "_on_level_cleared")
     $Player.connect("player_died", self, "_on_game_over")
 
+
+func _process(_delta):
+    if Input.is_action_pressed("toggle_debug_tools"):
+        $DebugTools.visible = !$DebugTools.visible
+
+
 func _on_level_cleared():
     print("level cleared")
 
+
 func _on_game_over():
     print("game over")
+
 
 func _on_Player_health_decreased(health):
     $HealthLabel.set_text("HP: "+str(health))
