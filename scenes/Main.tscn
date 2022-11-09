@@ -69,8 +69,8 @@ medium_obstacle_list = [ ExtResource( 10 ) ]
 large_obstacle_list = [ ExtResource( 4 ) ]
 
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
-player = NodePath("../Player")
 enemy_missile = ExtResource( 11 )
+player = NodePath("../Player")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 

@@ -18,20 +18,20 @@ func _ready():
 		printerr("Enemy Spawner is not assigned!")
 		get_tree().quit()
 
-func spawnObjectsForLevel(level):
-	spawner_node.spawnRandomFromList(5, easy_enemy_list, true)
-	spawner_node.spawnRandomFromList(2, medium_enemy_list, true)
-	spawner_node.spawnRandomFromList(5, small_obstacle_list, false)
-	spawner_node.spawnRandomFromList(2, medium_obstacle_list, false)
-	spawner_node.spawnRandomFromList(2, large_obstacle_list, false)
+func spawn_objects_for_level(level):
+	spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
+	spawner_node.spawn_random_from_list(2, medium_enemy_list, true)
+	spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
+	spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
+	spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 
-func enemyShoot():
+func enemy_shoot():
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 	get_tree().call_group("enemy", "shoot", spawner_node.player_scene)
 
-func determineTurnEnd():
+func determine_turn_end():
 	num_shots_fired += 1
 	if num_shots_fired >= num_enemies:
 		num_shots_fired = 0

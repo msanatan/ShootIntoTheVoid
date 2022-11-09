@@ -66,7 +66,7 @@ func _on_AnimationPlayer_animation_finished(anim_name:String):
 
 func _on_PlayerMissile_enemy_hit(enemy, missile):
 	enemy.kill()
-	increaseScore(100)
+	increase_score(100)
 
 	enemies_hit_this_turn += 1
 
@@ -74,11 +74,11 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 		missile.queue_free()
 		emit_signal("level_cleared")
 
-func increaseScore(amount):
+func increase_score(amount):
 	score += amount
 	emit_signal("score_increased", score)
 
-func decreaseHealth(amount):
+func decrease_health(amount):
 	health -= amount
 	if health < 0:
 		health = 0
