@@ -30,7 +30,7 @@ func _input(event):
 
 
 func _physics_process(delta):
-	if not is_shooting:
+	if not is_shooting and player_turn:
 		velocity = Vector2.ZERO
 		look_at(get_global_mouse_position())
 
