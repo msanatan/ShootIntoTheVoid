@@ -6,7 +6,7 @@ export(PackedScene) var explosion
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	
+
 func shoot(player):
 	var spawned_missile = missile.instance()
 	get_tree().get_root().add_child(spawned_missile)
@@ -22,7 +22,7 @@ func _on_EnemyMissile_missile_destroyed(player):
 		var enemyManager = main.get_node("EnemyManager")
 		if enemyManager:
 			enemyManager.determineTurnEnd()
-	
+
 func kill():
 	var spawned_explosion = explosion.instance()
 	get_tree().get_root().add_child(spawned_explosion)

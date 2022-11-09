@@ -24,7 +24,7 @@ func _ready():
 	else:
 		printerr("Player is not assigned!")
 		get_tree().quit()
-		
+
 func createInstance(enemy_scene, rotate_to_player):
 	var enemy = enemy_scene.instance()
 	var next_loc = getNextSpawnLoc(enemy)
@@ -36,24 +36,24 @@ func createInstance(enemy_scene, rotate_to_player):
 		return enemy
 	else:
 		enemy.queue_free()
-	
+
 func spawn(amount, enemy_path, rotate_to_player):
 	var enemy_scene = load(enemy_path)
-	
+
 	for _i in range(0, amount):
 		var enemy = createInstance(enemy_scene, rotate_to_player)
-			
+
 func spawnRandomFromList(amount, list, rotate_to_player):
 	if list.size() > 0:
 		for _i in range(0, amount):
 			var random_enemy = list[rand.randi_range(0, list.size()-1)];
 			var enemy = createInstance(random_enemy, rotate_to_player)
-			
+
 func isOverlapping(x1, y1, w1, h1, x2, y2, w2, h2):
 	var r1 = Rect2(x1 - w1/2,y1 - h1/2,w1,h1)
 	var r2 = Rect2(x2 - w2/2,y2 - h2/2,w2,h2)
 	return r1.intersects(r2)
-		
+
 func getNextSpawnLoc(enemy):
 	var sprite_node = enemy.get_node("Sprite")
 	var w = sprite_node.texture.get_width() * enemy.transform.get_scale().x
