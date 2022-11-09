@@ -25,6 +25,11 @@ func _ready():
 
 func create_instance(enemy_scene, rotate_to_player):
 	var enemy = enemy_scene.instance()
+	
+	var node_name = str(enemy.name.replace("@", "").replace(str(int(enemy.name)), ""))
+	if node_name == "Enemy":
+		enemy.set_player(player_scene)
+	
 	var next_loc = get_next_spawn_loc(enemy)
 	if next_loc.x != -1 && next_loc.y != -1:
 		enemy.position = next_loc

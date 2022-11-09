@@ -2,6 +2,7 @@ extends Area2D
 
 export(PackedScene) var missile
 export(PackedScene) var explosion
+var player_node = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,9 +22,9 @@ func _on_EnemyMissile_missile_destroyed(entity):
 		entity.decrease_health(10)
 		
 	var main = get_tree().get_root().get_node("Main")
-	if main:
+	if is_instance_valid(main):
 		var enemy_manager = main.get_node("EnemyManager")
-		if enemy_manager:
+		if is_instance_valid(enemy_manager):
 			enemy_manager.determine_turn_end()
 
 func kill():
@@ -31,6 +32,13 @@ func kill():
 	get_tree().get_root().add_child(spawned_explosion)
 	spawned_explosion.position = get_position()
 	queue_free()
+	
+func set_player(player):
+	player_node = player
+	
+func _physics_process(delta):
+	if is_instance_valid(player_node):
+		rotation = (player_node.global_position - global_position).angle() + PI/2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
