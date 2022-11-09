@@ -84,6 +84,10 @@ config/name="Shoot Into The Void"
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ParticleCache="*res://scripts/effects/ParticleCache.gd"
+
 [display]
 
 window/size/width=1280
