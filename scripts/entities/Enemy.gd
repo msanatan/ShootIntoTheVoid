@@ -16,10 +16,10 @@ func shoot(player):
 	spawned_missile.player_position = player.global_position
 	spawned_missile.connect("enemy_missile_destroyed", self, "_on_EnemyMissile_missile_destroyed")
 
-func _on_EnemyMissile_missile_destroyed(entity):
+func _on_EnemyMissile_missile_destroyed(entity, damage):
 	var node_name = str(entity.name.replace("@", "").replace(str(int(entity.name)), ""))
 	if node_name == "Player":
-		entity.decrease_health(10)
+		entity.decrease_health(damage)
 		
 	var main = get_tree().get_root().get_node("Main")
 	if is_instance_valid(main):

@@ -15,15 +15,17 @@ var num_shots_fired = 0
 func _ready():
 	spawner_node = get_node(spawner)
 	if spawner_node == null:
-		printerr("Enemy Spawner is not assigned!")
+		printerr("Spawner is not assigned!")
 		get_tree().quit()
 
 func spawn_objects_for_level(level):
-	spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
-	spawner_node.spawn_random_from_list(2, medium_enemy_list, true)
-	spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
-	spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
-	spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+	if level < 5:
+		spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
+		spawner_node.spawn_random_from_list(1, medium_enemy_list, true)
+		#spawner_node.spawn_random_from_list(1, hard_enemy_list, true)
+		spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
+		spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
+		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 
