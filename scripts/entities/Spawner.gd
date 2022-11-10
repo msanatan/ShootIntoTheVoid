@@ -1,6 +1,5 @@
 extends Position2D
 
-export (PackedScene) var enemy_missile
 export (NodePath) var player
 var spawn_locs = Array()
 var min_dist = 20
@@ -23,8 +22,8 @@ func _ready():
 		printerr("Player is not assigned!")
 		get_tree().quit()
 
-func create_instance(enemy_scene, rotate_to_player):
-	var enemy = enemy_scene.instance()
+func create_instance(entity_scene, rotate_to_player):
+	var enemy = entity_scene.instance()
 	
 	var node_name = str(enemy.name.replace("@", "").replace(str(int(enemy.name)), ""))
 	if node_name == "Enemy":
@@ -41,27 +40,27 @@ func create_instance(enemy_scene, rotate_to_player):
 	enemy.queue_free()
 
 
-func spawn(amount, enemy_path, rotate_to_player):
-	var enemy_scene = load(enemy_path)
+func spawn(amount, entity_path, rotate_to_player):
+	var entity_scene = load(entity_path)
 
 	for _i in range(0, amount):
-		var enemy = create_instance(enemy_scene, rotate_to_player)
+		var entity = create_instance(entity_scene, rotate_to_player)
 
 func spawn_random_from_list(amount, list, rotate_to_player):
 	if list.size() > 0:
 		for _i in range(0, amount):
-			var random_enemy = list[rand.randi_range(0, list.size()-1)];
-			var enemy = create_instance(random_enemy, rotate_to_player)
+			var random_entity = list[rand.randi_range(0, list.size()-1)];
+			var entity = create_instance(random_entity, rotate_to_player)
 
 func is_overlapping(x1, y1, w1, h1, x2, y2, w2, h2):
 	var r1 = Rect2(x1 - w1/2,y1 - h1/2,w1,h1)
 	var r2 = Rect2(x2 - w2/2,y2 - h2/2,w2,h2)
 	return r1.intersects(r2)
 
-func get_next_spawn_loc(enemy):
-	var sprite_node = enemy.get_node("Sprite")
-	var w = sprite_node.texture.get_width() * enemy.transform.get_scale().x
-	var h = sprite_node.texture.get_height() * enemy.transform.get_scale().y
+func get_next_spawn_loc(entity):
+	var sprite_node = entity.get_node("Sprite")
+	var w = sprite_node.texture.get_width() * entity.transform.get_scale().x
+	var h = sprite_node.texture.get_height() * entity.transform.get_scale().y
 	var max_attempts = 10
 	var attempt_count = 0
 	while attempt_count < max_attempts:
