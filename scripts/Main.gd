@@ -1,6 +1,7 @@
 extends Node
 
 export var level = 1
+var game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,14 +32,18 @@ func _process(_delta):
 
 
 func _on_level_cleared():
+	game_over = true
 	$UI/LevelCompleteLabel.show()
 	$UI/DemoLabel.show()
 	$UI/RestartButton.show()
+	$UI/TurnLabel.hide()
 
 func _on_game_over():
+	game_over = true
 	$UI/GameOverLabel.show()
 	$UI/DemoLabel.show()
 	$UI/RestartButton.show()	
+	$UI/TurnLabel.hide()
 
 func _on_Player_health_decreased(health):
 	$UI/HealthLabel.set_text("LIFE: "+str(health))
@@ -48,8 +53,9 @@ func _on_Player_score_increased(score):
 
 func _on_Player_turn_ended():
 	$UI/PlayerShotProgress.hide()
-	$EnemyManager.enemy_shoot()
-	show_turn_label("Enemy Turn")
+	if !game_over:
+		$EnemyManager.enemy_shoot()
+		show_turn_label("Enemy Turn")
 	
 func _on_Player_turn_started():
 	show_turn_label("Player Turn")
