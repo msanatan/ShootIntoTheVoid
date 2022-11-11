@@ -17,9 +17,12 @@ func _ready():
 	$Player.connect("score_increased", self, "_on_Player_score_increased")
 	$PlayerMovementArea.position = $Player.position
 	$PlayerMovementArea.visible = true
+	$Player.connect("player_turn_started", self, "_on_Player_turn_started")
 	$Player.connect("player_turn_ended", self, "_on_Player_turn_ended")
 	$Player.connect("level_cleared", self, "_on_level_cleared")
 	$Player.connect("player_died", self, "_on_game_over")
+	
+	show_turn_label("Player Turn")
 
 
 func _process(_delta):
@@ -40,13 +43,25 @@ func _on_game_over():
 func _on_Player_health_decreased(health):
 	$UI/HealthLabel.set_text("LIFE: "+str(health))
 
-
 func _on_Player_score_increased(score):
 	$UI/ScoreLabel.set_text("SCORE: "+str(score))
 
 func _on_Player_turn_ended():
 	$EnemyManager.enemy_shoot()
-
+	show_turn_label("Enemy Turn")
+	
+func _on_Player_turn_started():
+	show_turn_label("Player Turn")
+	
+func show_turn_label(text):
+	$UI/TurnLabel.show()
+	$UI/TurnLabel.set_text(text)
+	$UI/TurnAnimationPlayer.stop()
+	$UI/TurnAnimationPlayer.play("FadeInAndOut")
+	
+func _on_TurnAnimationPlayer_animation_finished(anim_name):
+	if anim_name == "FadeInAndOut":
+		$UI/TurnLabel.hide()
 
 func _on_Player_fire_missile():
 	$PlayerMovementArea.visible = false

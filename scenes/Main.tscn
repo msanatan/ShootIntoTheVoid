@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/PlayerMissile.tscn" type="PackedScene" id=2]
@@ -63,6 +63,66 @@ font_data = ExtResource( 14 )
 size = 80
 outline_size = 5
 font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+outline_size = 2
+font_data = ExtResource( 14 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "FadeInAndOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TurnLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TurnLabel:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TurnLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TurnLabel:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="DynamicFont" id=5]
 size = 30
@@ -176,6 +236,28 @@ text = "LEVEL COMPLETED!
 align = 1
 valign = 1
 
+[node name="TurnLabel" type="Label" parent="UI"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.5
+margin_top = -187.5
+margin_right = 152.5
+margin_bottom = -164.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Player Turn"
+align = 1
+percent_visible = 0.0
+
+[node name="TurnAnimationPlayer" type="AnimationPlayer" parent="UI"]
+anims/FadeInAndOut = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
 [node name="DemoLabel" type="Label" parent="UI"]
 visible = false
 anchor_left = 0.5
@@ -210,4 +292,5 @@ text = "PLAY  AGAIN"
 
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
 [connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]
+[connection signal="animation_finished" from="UI/TurnAnimationPlayer" to="." method="_on_TurnAnimationPlayer_animation_finished"]
 [connection signal="pressed" from="UI/RestartButton" to="." method="_on_RestartButton_pressed"]

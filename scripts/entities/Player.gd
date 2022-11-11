@@ -5,6 +5,7 @@ signal missile_destroyed
 signal health_decreased
 signal player_died
 signal score_increased
+signal player_turn_started
 signal player_turn_ended
 signal level_cleared
 
@@ -77,6 +78,10 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 func increase_score(amount):
 	score += amount
 	emit_signal("score_increased", score)
+	
+func set_player_turn(turn):
+	player_turn = turn;
+	emit_signal("player_turn_started")
 
 func decrease_health(amount):
 	health -= amount
