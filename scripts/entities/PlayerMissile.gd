@@ -12,6 +12,7 @@ var angle = 0
 var is_following_mouse = false
 var recalculate_angle = false
 var previous_cursor_position = Vector2.ZERO
+var shot_progress_bar = null
 
 func _ready():
 	velocity = Vector2.RIGHT
@@ -36,11 +37,16 @@ func _process(delta):
 		translate(velocity)
 	else:
 		translate(velocity)
+		
+	if is_instance_valid(shot_progress_bar):
+		shot_progress_bar.value = $DestroyTimer.time_left / $DestroyTimer.wait_time * 100
 
 
 func _on_FollowCursorTimer_timeout():
 	is_following_mouse = true
 
+func set_shot_progress_bar(bar):
+	shot_progress_bar = bar
 
 func _on_DestroyTimer_timeout():
 	print_debug("Missile time ran out")

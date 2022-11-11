@@ -11,6 +11,9 @@ signal level_cleared
 
 export (PackedScene) var missile
 export (PackedScene) var explosion
+export (NodePath) var shot_progress_bar
+
+var shot_progress_bar_node = null
 export var health = 100
 export var speed = 150
 var is_shooting = false
@@ -19,6 +22,9 @@ var score = 0
 var velocity = Vector2.ZERO
 var enemies_hit_this_turn = 0
 var total_enemies_this_turn = 0
+
+func _ready():
+	shot_progress_bar_node = get_node(shot_progress_bar)
 
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and not is_shooting:
@@ -56,10 +62,15 @@ func _on_PlayerMissile_missile_destroyed():
 
 func _on_AnimationPlayer_animation_finished(anim_name:String):
 	if anim_name == "LightsOn":
+		
+		shot_progress_bar_node.show()
+		shot_progress_bar_node.value = 100
+		
 		var spawned_missile = missile.instance()
 		get_tree().get_root().add_child(spawned_missile)
 		spawned_missile.position = $BulletSpawnPoint.global_position
 		spawned_missile.look_at(get_global_mouse_position())
+		spawned_missile.set_shot_progress_bar(shot_progress_bar_node)
 		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
 		spawned_missile.connect("enemy_hit", self, "_on_PlayerMissile_enemy_hit")
 	elif anim_name == "LightsOff":

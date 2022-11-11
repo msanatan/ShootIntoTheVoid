@@ -47,6 +47,7 @@ func _on_Player_score_increased(score):
 	$UI/ScoreLabel.set_text("SCORE: "+str(score))
 
 func _on_Player_turn_ended():
+	$UI/PlayerShotProgress.hide()
 	$EnemyManager.enemy_shoot()
 	show_turn_label("Enemy Turn")
 	
