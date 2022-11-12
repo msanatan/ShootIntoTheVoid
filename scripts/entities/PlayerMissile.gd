@@ -3,6 +3,7 @@ extends Area2D
 signal missile_destroyed
 signal enemy_hit
 signal obstacle_hit
+signal powerup_hit
 
 export (int) var speed = 200
 export (PackedScene) var explosion
@@ -73,3 +74,5 @@ func _on_PlayerMissile_area_entered(area):
 		emit_signal("obstacle_hit", area)
 		emit_signal("missile_destroyed")
 		queue_free()
+	elif node_name == "PowerUp":
+		emit_signal("powerup_hit", area, self)

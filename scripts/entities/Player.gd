@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal fire_missile
 signal missile_destroyed
-signal health_decreased
+signal health_changed
 signal player_died
 signal score_increased
 signal player_turn_started
@@ -71,8 +71,12 @@ func _on_AnimationPlayer_animation_finished(anim_name:String):
 		spawned_missile.set_shot_progress_bar(shot_progress_bar_node)
 		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
 		spawned_missile.connect("enemy_hit", self, "_on_PlayerMissile_enemy_hit")
+		spawned_missile.connect("powerup_hit", self, "_on_PlayerMissile_powerup_hit")
 	elif anim_name == "LightsOff":
 		emit_signal("player_turn_ended")
+
+func _on_PlayerMissile_powerup_hit(powerup, missile):
+	powerup.collect(self)
 
 func _on_PlayerMissile_enemy_hit(enemy, missile):
 	enemy.kill()
@@ -103,4 +107,8 @@ func decrease_health(amount):
 		get_tree().call_group("enemy_missile", "hide")
 		queue_free()
 
-	emit_signal("health_decreased", Globals.health)
+	emit_signal("health_changed", Globals.health)
+	
+func increase_health(amount):
+	Globals.health += amount
+	emit_signal("health_changed", Globals.health)

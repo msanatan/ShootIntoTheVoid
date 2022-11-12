@@ -16,7 +16,7 @@ func _ready():
 	$UI/DemoLabel.hide()
 	$UI/RestartButton.hide()
 	
-	$Player.connect("health_decreased", self, "_on_Player_health_decreased")
+	$Player.connect("health_changed", self, "_on_Player_health_changed")
 	$Player.connect("score_increased", self, "_on_Player_score_increased")
 	$PlayerMovementArea.position = $Player.position
 	$PlayerMovementArea.visible = true
@@ -86,7 +86,7 @@ func _on_game_over():
 	$UI/RestartButton.show()	
 	$UI/TurnLabel.hide()
 
-func _on_Player_health_decreased(health):
+func _on_Player_health_changed(health):
 	$UI/HealthLabel.set_text("LIFE: "+str(health))
 
 func _on_Player_score_increased(score):

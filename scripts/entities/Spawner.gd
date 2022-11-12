@@ -28,7 +28,7 @@ func create_instance(entity_scene, rotate_to_player):
 	var node_name = str(entity.name.replace("@", "").replace(str(int(entity.name)), ""))
 	if node_name == "Enemy":
 		entity.set_player(player_scene)
-	else:
+	elif node_name == "Obstacle":
 		entity.rotation = rand.randf_range(0, PI)
 	
 	var next_loc = get_next_spawn_loc(entity)

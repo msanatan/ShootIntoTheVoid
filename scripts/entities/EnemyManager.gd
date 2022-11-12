@@ -7,6 +7,7 @@ export(Array, PackedScene) var hard_enemy_list
 export(Array, PackedScene) var small_obstacle_list
 export(Array, PackedScene) var medium_obstacle_list
 export(Array, PackedScene) var large_obstacle_list
+export(Array, PackedScene) var powerup_list
 var spawner_node = null
 var num_enemies = 0
 var num_shots_fired = 0
@@ -45,6 +46,7 @@ func spawn_objects_for_level(level):
 		spawner_node.spawn_random_from_list(2, small_obstacle_list, false)
 		spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
 		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+		spawner_node.spawn_random_from_list(1, powerup_list, false)
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 
