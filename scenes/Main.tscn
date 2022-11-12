@@ -282,15 +282,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -408.5
+margin_left = -467.0
 margin_top = -208.0
-margin_right = 408.5
+margin_right = 467.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0.835294, 0.0627451, 0.968627, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "Thanks for playing!
-This is just a demo of the first
-level, there are many more to come!
+This is a WIP demo; we are actively working on
+finishing up the game!
 
 your feedback is greatly appreciated!"
 align = 1
