@@ -14,11 +14,9 @@ export (PackedScene) var explosion
 export (NodePath) var shot_progress_bar
 
 var shot_progress_bar_node = null
-export var health = 100
 export var speed = 150
 var is_shooting = false
 var player_turn = true
-var score = 0
 var velocity = Vector2.ZERO
 var enemies_hit_this_turn = 0
 var total_enemies_this_turn = 0
@@ -87,17 +85,17 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 		emit_signal("level_cleared")
 
 func increase_score(amount):
-	score += amount
-	emit_signal("score_increased", score)
+	Globals.score += amount
+	emit_signal("score_increased", Globals.score)
 	
 func set_player_turn(turn):
 	player_turn = turn;
 	emit_signal("player_turn_started")
 
 func decrease_health(amount):
-	health -= amount
-	if health <= 0:
-		health = 0
+	Globals.health -= amount
+	if Globals.health <= 0:
+		Globals.health = 0
 		emit_signal("player_died")
 		var spawned_explosion = explosion.instance()
 		get_tree().get_root().add_child(spawned_explosion)
@@ -105,4 +103,4 @@ func decrease_health(amount):
 		get_tree().call_group("enemy_missile", "hide")
 		queue_free()
 
-	emit_signal("health_decreased", health)
+	emit_signal("health_decreased", Globals.health)

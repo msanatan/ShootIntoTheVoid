@@ -1,14 +1,14 @@
 extends Node
 
-export var level = 1
 var game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$EnemyManager.spawn_objects_for_level(level)
+	$EnemyManager.spawn_objects_for_level(Globals.level)
 
-	$UI/HealthLabel.set_text("LIFE: "+str($Player.health))
-	$UI/ScoreLabel.set_text("SCORE: 0")
+	$UI/HealthLabel.set_text("LIFE: "+str(Globals.health))
+	$UI/ScoreLabel.set_text("SCORE: "+str(Globals.score))
+	$UI/LevelLabel.set_text("LEVEL: "+str(Globals.level))
 	$UI/LevelCompleteLabel.hide()
 	$UI/GameOverLabel.hide()
 	$UI/DemoLabel.hide()
@@ -32,11 +32,13 @@ func _process(_delta):
 
 
 func _on_level_cleared():
-	game_over = true
-	$UI/LevelCompleteLabel.show()
-	$UI/DemoLabel.show()
-	$UI/RestartButton.show()
-	$UI/TurnLabel.hide()
+	#game_over = true
+	#$UI/LevelCompleteLabel.show()
+	#$UI/DemoLabel.show()
+	#$UI/RestartButton.show()
+	#$UI/TurnLabel.hide()
+	Globals.level += 1
+	get_tree().reload_current_scene()
 
 func _on_game_over():
 	game_over = true

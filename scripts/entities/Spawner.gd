@@ -23,21 +23,23 @@ func _ready():
 		get_tree().quit()
 
 func create_instance(entity_scene, rotate_to_player):
-	var enemy = entity_scene.instance()
+	var entity = entity_scene.instance()
 	
-	var node_name = str(enemy.name.replace("@", "").replace(str(int(enemy.name)), ""))
+	var node_name = str(entity.name.replace("@", "").replace(str(int(entity.name)), ""))
 	if node_name == "Enemy":
-		enemy.set_player(player_scene)
+		entity.set_player(player_scene)
+	else:
+		entity.rotation = rand.randf_range(0, PI)
 	
-	var next_loc = get_next_spawn_loc(enemy)
+	var next_loc = get_next_spawn_loc(entity)
 	if next_loc.x != -1 && next_loc.y != -1:
-		enemy.position = next_loc
+		entity.position = next_loc
 		if rotate_to_player:
-			enemy.rotation = (player_scene.global_position - enemy.global_position).angle() + PI/2
-		add_child(enemy)
-		return enemy
+			entity.rotation = (player_scene.global_position - entity.global_position).angle() + PI/2
+		add_child(entity)
+		return entity
 
-	enemy.queue_free()
+	entity.queue_free()
 
 
 func spawn(amount, entity_path, rotate_to_player):
@@ -51,6 +53,15 @@ func spawn_random_from_list(amount, list, rotate_to_player):
 		for _i in range(0, amount):
 			var random_entity = list[rand.randi_range(0, list.size()-1)];
 			var entity = create_instance(random_entity, rotate_to_player)
+			
+func spawn_random_from_list_with_chance(amount, list, rotate_to_player, limit, chance):
+	if list.size() > 0:
+		for _i in range(0, amount):
+			var value = rand.randi_range(0, limit)
+			var should_spawn = value <= chance
+			if should_spawn:
+				var random_entity = list[rand.randi_range(0, list.size()-1)];
+				var entity = create_instance(random_entity, rotate_to_player)
 
 func is_overlapping(x1, y1, w1, h1, x2, y2, w2, h2):
 	var r1 = Rect2(x1 - w1/2,y1 - h1/2,w1,h1)
