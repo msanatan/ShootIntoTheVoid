@@ -94,6 +94,7 @@ func _on_Player_score_increased(score):
 
 func _on_Player_turn_ended():
 	$UI/PlayerShotProgress.hide()
+	$UI/PlayerShotProgress.value = 100
 	if !game_over:
 		$EnemyManager.enemy_shoot()
 		show_turn_label("Enemy Turn")
