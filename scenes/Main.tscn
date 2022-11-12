@@ -190,7 +190,8 @@ script = ExtResource( 13 )
 [node name="ScoreLabel" type="Label" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -320.0
+margin_left = -330.0
+margin_right = -10.0
 margin_bottom = 35.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0.117647, 0.92549, 0.0509804, 1 )
@@ -199,7 +200,8 @@ text = "Score: 0"
 align = 2
 
 [node name="HealthLabel" type="Label" parent="UI"]
-margin_right = 256.0
+margin_left = 10.0
+margin_right = 266.0
 margin_bottom = 35.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 0, 0, 1 )

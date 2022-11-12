@@ -122,4 +122,6 @@ func _on_RestartButton_pressed():
 	Globals.level = 1
 	Globals.health = 100
 	Globals.score = 0
-	get_tree().reload_current_scene()
+	queue_free()
+	var title_scene = load("res://scenes/Title.tscn")
+	FancyFade.horizontal_paint_brush(title_scene.instance())
