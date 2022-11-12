@@ -1,6 +1,7 @@
 extends Node
 
 var game_over = false
+export (float) var bg_scroll_speed = 10.0
 var rand = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +29,9 @@ func _ready():
 
 
 func _process(_delta):
+	$ParallaxBackground.scroll_offset.x += bg_scroll_speed * _delta
+	$ParallaxBackground.scroll_offset.y += bg_scroll_speed * _delta
+	
 	if Input.is_action_pressed("toggle_debug_tools"):
 		$DebugTools.visible = !$DebugTools.visible
 
