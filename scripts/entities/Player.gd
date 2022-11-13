@@ -12,8 +12,12 @@ signal level_cleared
 export (PackedScene) var missile
 export (PackedScene) var explosion
 export (NodePath) var shot_progress_bar
+export (NodePath) var power_up_label
+export (NodePath) var power_up_animation
 
 var shot_progress_bar_node = null
+var power_up_label_node = null
+var power_up_animation_node = null
 export var speed = 150
 var is_shooting = false
 var player_turn = true
@@ -23,6 +27,8 @@ var total_enemies_this_turn = 0
 
 func _ready():
 	shot_progress_bar_node = get_node(shot_progress_bar)
+	power_up_label_node = get_node(power_up_label)
+	power_up_animation_node = get_node(power_up_animation)
 
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and not is_shooting:

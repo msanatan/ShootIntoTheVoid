@@ -27,6 +27,7 @@ func spawn_objects_for_level(level):
 		spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
 		spawner_node.spawn_random_from_list(5, medium_obstacle_list, false)
 		spawner_node.spawn_random_from_list(4, large_obstacle_list, false)
+		spawner_node.spawn_random_from_list_with_chance(4, powerup_list, false, 10, 4)
 	elif level >= 10 && level < 20:
 		spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
 		spawner_node.spawn_random_from_list(3, medium_enemy_list, true)
@@ -34,19 +35,21 @@ func spawn_objects_for_level(level):
 		spawner_node.spawn_random_from_list(4, small_obstacle_list, false)
 		spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
 		spawner_node.spawn_random_from_list(3, large_obstacle_list, false)
+		spawner_node.spawn_random_from_list_with_chance(3, powerup_list, false, 10, 4)
 	elif level >= 5 && level < 10:
 		spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
 		spawner_node.spawn_random_from_list(2, medium_enemy_list, true)
 		spawner_node.spawn_random_from_list(3, small_obstacle_list, false)
 		spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
 		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+		spawner_node.spawn_random_from_list_with_chance(2, powerup_list, false, 10, 4)
 	elif level < 5:
 		spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
 		spawner_node.spawn_random_from_list(1, medium_enemy_list, true)
 		spawner_node.spawn_random_from_list(2, small_obstacle_list, false)
 		spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
 		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
-		spawner_node.spawn_random_from_list(1, powerup_list, false)
+		spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 
