@@ -7,25 +7,26 @@ signal powerup_hit
 
 export (int) var speed = 200
 export (PackedScene) var explosion
+export (float) var recalculate_threshold = 10.0
 
-var velocity = Vector2(0, 0)
-var angle = 0
-var is_following_mouse = false
-var recalculate_angle = false
-var previous_cursor_position = Vector2.ZERO
+var velocity := Vector2(0, 0)
+var angle: float = 0
+var is_following_mouse: bool = false
+var recalculate_angle: bool = false
+var previous_cursor_position := Vector2.ZERO
 var shot_progress_bar = null
 
 func _ready():
 	velocity = Vector2.RIGHT
 
 
-func _process(delta):
+func _process(delta: float):
 	var cursor_position = get_global_mouse_position()
-	if previous_cursor_position == cursor_position:
-		recalculate_angle = false
-	else:
+	if abs(previous_cursor_position.distance_to(cursor_position)) >= recalculate_threshold:
 		previous_cursor_position = cursor_position
 		recalculate_angle = true
+	else:
+		recalculate_angle = false
 
 	if recalculate_angle:
 		if not is_following_mouse:
@@ -38,7 +39,7 @@ func _process(delta):
 		translate(velocity)
 	else:
 		translate(velocity)
-		
+
 	if is_instance_valid(shot_progress_bar):
 		shot_progress_bar.value = $DestroyTimer.time_left / $DestroyTimer.wait_time * 100
 
