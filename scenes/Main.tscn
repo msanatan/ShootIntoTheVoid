@@ -2,14 +2,14 @@
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player/PlayerMissile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/obstacles/SmallMeteor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://entities/obstacles/LargeMeteor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/obstacles/MediumMeteorObstacle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/obstacles/LargeMeteorObstacle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/Spawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/enemies/LargeEnemy1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/enemies/SmallEnemy1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/enemies/EnemyManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=9]
-[ext_resource path="res://entities/obstacles/MediumMeteor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/obstacles/SmallMeteorObstacle.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/enemies/MediumEnemy1.tscn" type="PackedScene" id=11]
 [ext_resource path="res://entities/player/PlayerMovementArea.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scripts/FPSLabel.gd" type="Script" id=13]
@@ -466,8 +466,8 @@ spawner = NodePath("../Spawner")
 easy_enemy_list = [ ExtResource( 7 ) ]
 medium_enemy_list = [ ExtResource( 11 ) ]
 hard_enemy_list = [ ExtResource( 6 ) ]
-small_obstacle_list = [ ExtResource( 3 ) ]
-medium_obstacle_list = [ ExtResource( 10 ) ]
+small_obstacle_list = [ ExtResource( 10 ) ]
+medium_obstacle_list = [ ExtResource( 3 ) ]
 large_obstacle_list = [ ExtResource( 4 ) ]
 powerup_list = [ ExtResource( 18 ), ExtResource( 19 ) ]
 
@@ -588,10 +588,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 428.0
-margin_top = 348.5
-margin_right = 852.0
-margin_bottom = 371.499
+margin_left = -212.0
+margin_top = -11.5
+margin_right = 212.0
+margin_bottom = 11.499
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0.0313726, 1, 0, 1 )
 custom_fonts/font = SubResource( 13 )
