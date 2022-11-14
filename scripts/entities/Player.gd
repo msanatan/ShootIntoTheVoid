@@ -15,15 +15,15 @@ export (NodePath) var shot_progress_bar
 export (NodePath) var power_up_label
 export (NodePath) var power_up_animation
 
-var shot_progress_bar_node = null
+var shot_progress_bar_node: TextureProgress = null
 var power_up_label_node = null
 var power_up_animation_node = null
 export var speed = 150
-var is_shooting = false
-var player_turn = true
-var velocity = Vector2.ZERO
-var enemies_hit_this_turn = 0
-var total_enemies_this_turn = 0
+var is_shooting := false
+var player_turn := true
+var velocity := Vector2.ZERO
+var enemies_hit_this_turn := 0
+var total_enemies_this_turn := 0
 
 func _ready():
 	shot_progress_bar_node = get_node(shot_progress_bar)
@@ -66,10 +66,8 @@ func _on_PlayerMissile_missile_destroyed():
 
 func _on_AnimationPlayer_animation_finished(anim_name:String):
 	if anim_name == "LightsOn":
-		
 		shot_progress_bar_node.show()
 		shot_progress_bar_node.value = 100
-		
 		var spawned_missile = missile.instance()
 		get_tree().get_root().add_child(spawned_missile)
 		spawned_missile.position = $BulletSpawnPoint.global_position
@@ -97,7 +95,7 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 func increase_score(amount):
 	Globals.score += amount
 	emit_signal("score_increased", Globals.score)
-	
+
 func set_player_turn(turn):
 	player_turn = turn;
 	emit_signal("player_turn_started")
@@ -114,7 +112,7 @@ func decrease_health(amount):
 		queue_free()
 
 	emit_signal("health_changed", Globals.health)
-	
+
 func increase_health(amount):
 	Globals.health += amount
 	emit_signal("health_changed", Globals.health)
