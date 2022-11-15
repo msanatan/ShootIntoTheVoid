@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Line2D",
+"class": "AntialiasedLine2D",
+"language": "GDScript",
+"path": "res://addons/antialiased_line2d/antialiased_line2d.gd"
+}, {
+"base": "Polygon2D",
+"class": "AntialiasedPolygon2D",
+"language": "GDScript",
+"path": "res://addons/antialiased_line2d/antialiased_polygon2d.gd"
+}, {
+"base": "Polygon2D",
+"class": "AntialiasedRegularPolygon2D",
+"language": "GDScript",
+"path": "res://addons/antialiased_line2d/antialiased_regular_polygon2d.gd"
+}, {
 "base": "Reference",
 "class": "DTS",
 "language": "GDScript",
@@ -65,6 +80,9 @@ _global_script_classes=[ {
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 } ]
 _global_script_class_icons={
+"AntialiasedLine2D": "res://addons/antialiased_line2d/antialiased_line2d.svg",
+"AntialiasedPolygon2D": "res://addons/antialiased_line2d/antialiased_polygon2d.svg",
+"AntialiasedRegularPolygon2D": "res://addons/antialiased_line2d/antialiased_regular_polygon2d.svg",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -90,6 +108,7 @@ Globals="*res://scripts/Globals.gd"
 ParticleCache="*res://scripts/effects/ParticleCache.gd"
 Transitions="*res://addons/transitions/Transitions.gd"
 FancyFade="*res://addons/transitions/FancyFade.gd"
+AntialiasedLine2DTexture="*res://addons/antialiased_line2d/texture.gd"
 
 [display]
 
@@ -100,7 +119,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/antialiased_line2d/plugin.cfg", "res://addons/dialogic/plugin.cfg" )
 
 [gdnative]
 

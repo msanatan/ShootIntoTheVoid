@@ -588,10 +588,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -212.0
-margin_top = -11.5
-margin_right = 212.0
-margin_bottom = 11.499
+margin_left = 428.0
+margin_top = 348.5
+margin_right = 852.0
+margin_bottom = 371.499
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0.0313726, 1, 0, 1 )
 custom_fonts/font = SubResource( 13 )
@@ -644,6 +644,8 @@ margin_top = -20.0
 value = 100.0
 texture_under = ExtResource( 15 )
 texture_progress = ExtResource( 16 )
+
+[node name="Orbits" type="CanvasLayer" parent="."]
 
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
 [connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]
