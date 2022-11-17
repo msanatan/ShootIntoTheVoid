@@ -31,3 +31,4 @@ func _process(delta):
 	if is_moving:
 		count += delta	
 		position = Vector2(sin(count * speed) * radius, cos(count * speed) * radius) + screen_center
+		rotation = count * radius/2000
