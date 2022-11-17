@@ -39,6 +39,7 @@ func _input(event):
 		is_shooting = true
 		enemies_hit_this_turn = 0
 		total_enemies_this_turn = get_tree().get_nodes_in_group("enemy").size()	
+		$ChargingParticles.emitting = true
 		emit_signal("fire_missile")
 		$AnimationPlayer.play("LightsOn")
 
@@ -87,7 +88,7 @@ func _on_AnimationPlayer_animation_finished(anim_name:String):
 		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
 		spawned_missile.connect("enemy_hit", self, "_on_PlayerMissile_enemy_hit")
 		spawned_missile.connect("powerup_hit", self, "_on_PlayerMissile_powerup_hit")
-		
+		$ChargingParticles.emitting = false
 		do_normal_shake()
 	elif anim_name == "LightsOff":
 		emit_signal("player_turn_ended")
