@@ -86,9 +86,8 @@ func _on_game_over():
 	$UI/RestartButton.show()	
 	$UI/TurnLabel.hide()
 
-func _on_Player_health_changed(health):
+func _on_Player_health_changed(health, is_increase):
 	$UI/HealthLabel.set_text("LIFE: "+str(health))
-	$ShakeCamera.shake()
 
 func _on_Player_score_increased(score):
 	$UI/ScoreLabel.set_text("SCORE: "+str(score))

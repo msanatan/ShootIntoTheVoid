@@ -61,7 +61,8 @@ func determine_turn_end():
 	num_shots_fired += 1
 	if num_shots_fired >= num_enemies:
 		num_shots_fired = 0
-		spawner_node.player_scene.set_player_turn(true)
+		if is_instance_valid(spawner_node.player_scene):
+			spawner_node.player_scene.set_player_turn(true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
