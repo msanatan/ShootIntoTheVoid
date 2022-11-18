@@ -40,6 +40,7 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
+modulate = Color( 2, 2, 2, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 

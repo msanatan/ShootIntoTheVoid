@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player/PlayerMissile.tscn" type="PackedScene" id=2]
@@ -21,6 +21,11 @@
 [ext_resource path="res://entities/powerups/ScorePowerUp.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scripts/effects/ShakeCamera.gd" type="Script" id=20]
 [ext_resource path="res://entities/effects/PlayerExplosion.tscn" type="PackedScene" id=21]
+
+[sub_resource type="Environment" id=16]
+background_mode = 4
+glow_enabled = true
+glow_hdr_threshold = 1.5
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeScreenToBlack"
@@ -439,6 +444,9 @@ script = ExtResource( 9 )
 [node name="ShakeCamera" type="Camera2D" parent="."]
 current = true
 script = ExtResource( 20 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 16 )
 
 [node name="BackgroundColorRect" type="ColorRect" parent="."]
 visible = false

@@ -72,6 +72,7 @@ func _on_PlayerMissile_area_entered(area):
 		var spawned_explosion = explosion.instance()
 		get_tree().get_root().add_child(spawned_explosion)
 		spawned_explosion.position = get_position()
+		spawned_explosion.emitting = true
 		emit_signal("obstacle_hit", area)
 		emit_signal("missile_destroyed")
 		queue_free()

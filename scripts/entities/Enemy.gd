@@ -31,6 +31,7 @@ func kill():
 	var spawned_explosion = explosion.instance()
 	get_tree().get_root().add_child(spawned_explosion)
 	spawned_explosion.position = get_position()
+	spawned_explosion.emitting = true
 	queue_free()
 	
 func set_player(player):

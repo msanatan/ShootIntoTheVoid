@@ -18,6 +18,7 @@ linear_accel_random = 0.46
 scale = 10.0
 scale_random = 0.96
 scale_curve = SubResource( 3 )
+color = Color( 2, 2, 2, 1 )
 
 [node name="Thruster" type="Particles2D"]
 randomness = 0.5

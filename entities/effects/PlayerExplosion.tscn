@@ -29,6 +29,7 @@ angle_curve = SubResource( 2 )
 scale = 8.0
 scale_random = 0.8
 scale_curve = SubResource( 4 )
+color = Color( 3, 3, 3, 1 )
 
 [node name="Explosion" type="Particles2D"]
 emitting = false

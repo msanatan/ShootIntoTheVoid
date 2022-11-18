@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 explosion = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 2, 2, 2, 1 )
 rotation = 1.5708
 texture = ExtResource( 1 )
 
