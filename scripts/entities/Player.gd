@@ -9,12 +9,12 @@ signal player_turn_started
 signal player_turn_ended
 signal level_cleared
 
-export (PackedScene) var missile
-export (PackedScene) var explosion
-export (NodePath) var shot_progress_bar
-export (NodePath) var power_up_label
-export (NodePath) var power_up_animation
-export (NodePath) var shake_camera
+export(PackedScene) var missile
+export(PackedScene) var explosion
+export(NodePath) var shot_progress_bar
+export(NodePath) var power_up_label
+export(NodePath) var power_up_animation
+export(NodePath) var shake_camera
 
 var shot_progress_bar_node: TextureProgress = null
 var power_up_label_node = null
@@ -27,18 +27,20 @@ var velocity := Vector2.ZERO
 var enemies_hit_this_turn := 0
 var total_enemies_this_turn := 0
 
+
 func _ready():
 	shot_progress_bar_node = get_node(shot_progress_bar)
 	power_up_label_node = get_node(power_up_label)
 	power_up_animation_node = get_node(power_up_animation)
 	shake_camera_node = get_node(shake_camera)
 
+
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and not is_shooting:
 		print_debug("Firing missile")
 		is_shooting = true
 		enemies_hit_this_turn = 0
-		total_enemies_this_turn = get_tree().get_nodes_in_group("enemy").size()	
+		total_enemies_this_turn = get_tree().get_nodes_in_group("enemy").size()
 		$ChargingParticles.emitting = true
 		emit_signal("fire_missile")
 		$AnimationPlayer.play("LightsOn")
@@ -60,23 +62,25 @@ func _physics_process(delta):
 
 		move_and_collide(velocity.normalized() * speed * delta)
 
+
 func do_normal_shake():
 	shake_camera_node.NOISE_SHAKE_SPEED = 30.0
 	shake_camera_node.NOISE_SHAKE_STRENGTH = 10.0
 	shake_camera_node.SHAKE_DECAY_RATE = 3.0
 	shake_camera_node.apply_noise_shake()
 
+
 func _on_PlayerMissile_missile_destroyed():
 	is_shooting = false
 	player_turn = false
-	
+
 	do_normal_shake()
-		
+
 	emit_signal("missile_destroyed")
 	$AnimationPlayer.play("LightsOff")
 
 
-func _on_AnimationPlayer_animation_finished(anim_name:String):
+func _on_AnimationPlayer_animation_finished(anim_name: String):
 	if anim_name == "LightsOn":
 		shot_progress_bar_node.show()
 		shot_progress_bar_node.value = 100
@@ -93,14 +97,16 @@ func _on_AnimationPlayer_animation_finished(anim_name:String):
 	elif anim_name == "LightsOff":
 		emit_signal("player_turn_ended")
 
+
 func _on_PlayerMissile_powerup_hit(powerup, missile):
 	do_normal_shake()
 	powerup.collect(self)
 
+
 func _on_PlayerMissile_enemy_hit(enemy, missile):
 	enemy.kill()
 	increase_score(100)
-	
+
 	do_normal_shake()
 
 	enemies_hit_this_turn += 1
@@ -109,22 +115,25 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 		missile.queue_free()
 		emit_signal("level_cleared")
 
+
 func increase_score(amount):
 	Globals.score += amount
 	emit_signal("score_increased", Globals.score)
 
+
 func set_player_turn(turn):
-	player_turn = turn;
+	player_turn = turn
 	emit_signal("player_turn_started")
 
+
 func decrease_health(amount):
-	Globals.health -= amount	
+	Globals.health -= amount
 	if Globals.health <= 0:
 		shake_camera_node.NOISE_SHAKE_SPEED = 30.0
 		shake_camera_node.SHAKE_DECAY_RATE = 3.0
 		shake_camera_node.NOISE_SHAKE_STRENGTH = 200.0
 		shake_camera_node.apply_noise_shake()
-		
+
 		Globals.health = 0
 		emit_signal("player_died")
 		var spawned_explosion = explosion.instance()
@@ -133,13 +142,14 @@ func decrease_health(amount):
 		spawned_explosion.position = get_position()
 		get_tree().call_group("enemy_missile", "hide")
 		queue_free()
-	else :
+	else:
 		shake_camera_node.NOISE_SHAKE_SPEED = 30.0
 		shake_camera_node.SHAKE_DECAY_RATE = 3.0
 		shake_camera_node.NOISE_SHAKE_STRENGTH = 60.0
 		shake_camera_node.apply_noise_shake()
 
 	emit_signal("health_changed", Globals.health, false)
+
 
 func increase_health(amount):
 	Globals.health += amount

@@ -3,9 +3,11 @@ extends Area2D
 export(PackedScene) var explosion
 export(String) var powerup_type
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass  # Replace with function body.
+
 
 func collect(player):
 	var spawned_explosion = explosion.instance()
@@ -13,7 +15,8 @@ func collect(player):
 	spawned_explosion.position = get_position()
 	apply_powerup(player)
 	queue_free()
-	
+
+
 func apply_powerup(player):
 	match powerup_type:
 		"health":

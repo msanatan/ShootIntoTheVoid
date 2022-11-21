@@ -1,6 +1,6 @@
 extends ColorRect
 
-export (String, FILE, "*.tscn") var next_scene
+export(String, FILE, "*.tscn") var next_scene
 
 onready var anim_player := $AnimationPlayer
 

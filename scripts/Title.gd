@@ -1,7 +1,8 @@
 extends Node2D
 
 var main_scene = preload("res://scenes/Main.tscn")
-export (float) var bg_scroll_speed = 10.0
+export(float) var bg_scroll_speed = 10.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
