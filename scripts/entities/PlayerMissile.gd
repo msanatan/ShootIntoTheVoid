@@ -5,16 +5,17 @@ signal enemy_hit
 signal obstacle_hit
 signal powerup_hit
 
-export (int) var speed = 200
-export (PackedScene) var explosion
-export (float) var recalculate_threshold = 10.0
+export(int) var speed = 200
+export(PackedScene) var explosion
+export(float) var recalculate_threshold = 10.0
 
 var velocity := Vector2(0, 0)
 var angle: float = 0
-var is_following_mouse: bool = false
+var is_following_cursor: bool = false
 var recalculate_angle: bool = false
 var previous_cursor_position := Vector2.ZERO
 var shot_progress_bar = null
+
 
 func _ready():
 	velocity = Vector2.RIGHT
@@ -29,7 +30,7 @@ func _process(delta: float):
 		recalculate_angle = false
 
 	if recalculate_angle:
-		if not is_following_mouse:
+		if not is_following_cursor:
 			angle = rotation
 		else:
 			angle = (cursor_position - global_position).angle()
@@ -45,10 +46,12 @@ func _process(delta: float):
 
 
 func _on_FollowCursorTimer_timeout():
-	is_following_mouse = true
+	is_following_cursor = true
+
 
 func set_shot_progress_bar(bar):
 	shot_progress_bar = bar
+
 
 func _on_DestroyTimer_timeout():
 	print_debug("Missile time ran out")

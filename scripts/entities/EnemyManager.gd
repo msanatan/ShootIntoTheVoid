@@ -12,12 +12,14 @@ var spawner_node = null
 var num_enemies = 0
 var num_shots_fired = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawner_node = get_node(spawner)
 	if spawner_node == null:
 		printerr("Spawner is not assigned!")
 		get_tree().quit()
+
 
 func spawn_objects_for_level(level):
 	if level >= 20:
@@ -53,9 +55,11 @@ func spawn_objects_for_level(level):
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 
+
 func enemy_shoot():
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 	get_tree().call_group("enemy", "shoot", spawner_node.player_scene)
+
 
 func determine_turn_end():
 	num_shots_fired += 1
@@ -63,7 +67,6 @@ func determine_turn_end():
 		num_shots_fired = 0
 		if is_instance_valid(spawner_node.player_scene):
 			spawner_node.player_scene.set_player_turn(true)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

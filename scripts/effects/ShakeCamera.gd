@@ -12,11 +12,7 @@ export var RANDOM_SHAKE_STRENGTH: float = 30.0
 # Multiplier for lerping the shake strength to zero
 export var SHAKE_DECAY_RATE: float = 3.0
 
-enum ShakeType {
-	Random,
-	Noise,
-	Sway
-}
+enum ShakeType { Random, Noise, Sway }
 
 onready var noise = OpenSimplexNoise.new()
 # Used to keep track of where we are in the noise
@@ -26,36 +22,47 @@ onready var rand = RandomNumberGenerator.new()
 var shake_type: int = ShakeType.Random
 var shake_strength: float = 0.0
 
+
 func _ready() -> void:
-	global_position = get_viewport_rect().size/2
+	global_position = get_viewport_rect().size / 2
 	rand.randomize()
-	
+
 	# Randomize the generated noise
 	noise.seed = rand.randi()
 	# Period affects how quickly the noise changes values
 	noise.period = 2
-	
-func animated_zoom(amount = Vector2(0.5, 0.5), duration = 1.0, ease_method = Tween.TRANS_SINE, ease_direction = Tween.EASE_OUT):
+
+
+func animated_zoom(
+	amount = Vector2(0.5, 0.5),
+	duration = 1.0,
+	ease_method = Tween.TRANS_SINE,
+	ease_direction = Tween.EASE_OUT
+):
 	var tween = create_tween().set_trans(ease_method).set_ease(ease_direction)
-	tween.tween_property(self, "zoom",amount, duration)
-	
+	tween.tween_property(self, "zoom", amount, duration)
+
+
 func apply_random_shake() -> void:
 	shake_strength = RANDOM_SHAKE_STRENGTH
 	shake_type = ShakeType.Random
-	
+
+
 func apply_noise_shake() -> void:
 	shake_strength = NOISE_SHAKE_STRENGTH
 	shake_type = ShakeType.Noise
-	
+
+
 func apply_noise_sway() -> void:
 	shake_type = ShakeType.Sway
-	
+
+
 func _process(delta: float) -> void:
 	# Fade out the intensity over time
 	shake_strength = lerp(shake_strength, 0, SHAKE_DECAY_RATE * delta)
-	
+
 	var shake_offset: Vector2
-	
+
 	match shake_type:
 		ShakeType.Random:
 			shake_offset = get_random_offset()
@@ -63,18 +70,19 @@ func _process(delta: float) -> void:
 			shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
 		ShakeType.Sway:
 			shake_offset = get_noise_offset(delta, NOISE_SWAY_SPEED, NOISE_SWAY_STRENGTH)
-	
+
 	# Shake by adjusting camera.offset so we can move the camera around the level via it's position
 	offset = shake_offset
+
 
 func get_noise_offset(delta: float, speed: float, strength: float) -> Vector2:
 	noise_i += delta * speed
 	# Set the x values of each call to 'get_noise_2d' to a different value
 	# so that our x and y vectors will be reading from unrelated areas of noise
 	return Vector2(
-		noise.get_noise_2d(1, noise_i) * strength,
-		noise.get_noise_2d(100, noise_i) * strength
+		noise.get_noise_2d(1, noise_i) * strength, noise.get_noise_2d(100, noise_i) * strength
 	)
+
 
 func get_random_offset() -> Vector2:
 	return Vector2(
