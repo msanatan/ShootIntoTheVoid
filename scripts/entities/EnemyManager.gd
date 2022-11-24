@@ -24,48 +24,135 @@ func _ready():
 		printerr("Spawner is not assigned!")
 		get_tree().quit()
 
+func handle_boss_sequence(level):
+	if level % 5 == 0:
+		var next_order = 0
+		var boss_anim_node = get_tree().get_root().get_node("Main/UI/BossAnimationPlayer")
+		
+		if level == 5:
+			next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(1, boss_shielded_enemy_list, true, next_order, 1000)
+						
+			spawner_node.spawn_random_from_list(2, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+		elif level == 10:
+			next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(2, medium_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(1, boss_shielded_enemy_list, true, next_order, 1000)
+						
+			spawner_node.spawn_random_from_list(3, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+		elif level == 15:
+			next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(3, medium_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(1, hard_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(1, boss_shielded_enemy_list, true, next_order, 1000)
+						
+			spawner_node.spawn_random_from_list(4, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(3, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+		elif level == 20:
+			next_order = spawner_node.spawn_random_shielded_from_list(4, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(2, medium_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(2, hard_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(1, boss_shielded_enemy_list, true, next_order, 1000)
+						
+			spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(5, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(4, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+		elif level == 25:
+			next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(3, medium_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(3, hard_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(1, boss_shielded_enemy_list, true, next_order, 1000)
+						
+			spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(5, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(4, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+		else:
+			next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(4, medium_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(3, hard_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(2, boss_shielded_enemy_list, true, next_order, 1000)
+						
+			spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(5, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(4, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+			
+		boss_anim_node.stop()
+		boss_anim_node.play("Show")
+		return true
+	else:
+		return false
 
 func spawn_objects_for_level(level):
-	if level >= 20:
-		spawner_node.spawn_random_from_list(6, easy_enemy_list, true)
-		spawner_node.spawn_random_from_list_with_chance(5, medium_enemy_list, true, 10, 8)
-		spawner_node.spawn_random_from_list_with_chance(4, hard_enemy_list, true, 10, 8)
-		spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
-		spawner_node.spawn_random_from_list(5, medium_obstacle_list, false)
-		spawner_node.spawn_random_from_list(4, large_obstacle_list, false)
-		spawner_node.spawn_random_from_list_with_chance(4, powerup_list, false, 10, 4)
-	elif level >= 10 && level < 20:
-		spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
-		spawner_node.spawn_random_from_list(3, medium_enemy_list, true)
-		spawner_node.spawn_random_from_list_with_chance(2, hard_enemy_list, true, 10, 8)
-		spawner_node.spawn_random_from_list(4, small_obstacle_list, false)
-		spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
-		spawner_node.spawn_random_from_list(3, large_obstacle_list, false)
-		spawner_node.spawn_random_from_list_with_chance(3, powerup_list, false, 10, 4)
-	elif level > 5 && level < 10:
-		spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
-		spawner_node.spawn_random_from_list(2, medium_enemy_list, true)
-		spawner_node.spawn_random_from_list(3, small_obstacle_list, false)
-		spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
-		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
-		spawner_node.spawn_random_from_list_with_chance(2, powerup_list, false, 10, 4)
-	elif level == 5:
-		var next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
-		next_order = spawner_node.spawn_random_shielded_from_list(3, medium_shielded_enemy_list, true, next_order)
-		next_order = spawner_node.spawn_random_shielded_from_list(3, hard_shielded_enemy_list, true, next_order)
-		next_order = spawner_node.spawn_random_shielded_from_list(1, boss_shielded_enemy_list, true, next_order, 1000)
-				
-		spawner_node.spawn_random_from_list(2, small_obstacle_list, false)
-		spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
-		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
-		spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)		
-	elif level < 5:
-		spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
-		spawner_node.spawn_random_from_list(1, medium_enemy_list, true)
-		spawner_node.spawn_random_from_list(2, small_obstacle_list, false)
-		spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
-		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
-		spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+	var is_boss_level = handle_boss_sequence(level)
+	var next_order = 0
+	
+	if !is_boss_level:
+		if level > 25:
+			spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
+			spawner_node.spawn_random_from_list_with_chance(3, medium_enemy_list, true, 10, 8)
+			spawner_node.spawn_random_from_list_with_chance(4, hard_enemy_list, true, 10, 8)
+			
+			next_order = spawner_node.spawn_random_shielded_from_list(2, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(3, medium_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(2, hard_shielded_enemy_list, true, next_order)
+			
+			spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(5, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(4, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(4, powerup_list, false, 10, 4)
+		elif level > 20 && level < 25:
+			spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
+			spawner_node.spawn_random_from_list_with_chance(3, medium_enemy_list, true, 10, 8)
+			spawner_node.spawn_random_from_list_with_chance(3, hard_enemy_list, true, 10, 8)
+			
+			next_order = spawner_node.spawn_random_shielded_from_list(2, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(2, medium_shielded_enemy_list, true, next_order)
+			next_order = spawner_node.spawn_random_shielded_from_list(1, hard_shielded_enemy_list, true, next_order)
+			
+			spawner_node.spawn_random_from_list(5, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(5, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(4, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(4, powerup_list, false, 10, 4)
+		elif level > 10 && level < 20:
+			spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
+			spawner_node.spawn_random_from_list(2, medium_enemy_list, true)
+			spawner_node.spawn_random_from_list_with_chance(2, hard_enemy_list, true, 10, 8)
+			
+			next_order = spawner_node.spawn_random_shielded_from_list(2, easy_shielded_enemy_list, true, 1)
+			next_order = spawner_node.spawn_random_shielded_from_list(2, medium_shielded_enemy_list, true, next_order)
+			
+			spawner_node.spawn_random_from_list(4, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(3, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(3, powerup_list, false, 10, 4)
+		elif level > 5 && level < 10:
+			spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
+			spawner_node.spawn_random_from_list(2, medium_enemy_list, true)
+			
+			next_order = spawner_node.spawn_random_shielded_from_list(2, easy_shielded_enemy_list, true, 1)
+			
+			spawner_node.spawn_random_from_list(3, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(2, powerup_list, false, 10, 4)
+		elif level < 5:
+			spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
+			spawner_node.spawn_random_from_list(1, medium_enemy_list, true)
+			spawner_node.spawn_random_from_list(2, small_obstacle_list, false)
+			spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
+			spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 

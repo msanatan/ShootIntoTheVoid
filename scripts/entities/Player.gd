@@ -15,12 +15,14 @@ export(NodePath) var shot_progress_bar
 export(NodePath) var power_up_label
 export(NodePath) var power_up_animation
 export(NodePath) var shake_camera
+export var speed = 150
+export(bool) var can_shoot = true
 
 var shot_progress_bar_node: TextureProgress = null
 var power_up_label_node = null
 var power_up_animation_node = null
 var shake_camera_node = null
-export var speed = 150
+
 var is_shooting := false
 var player_turn := true
 var velocity := Vector2.ZERO
@@ -33,10 +35,11 @@ func _ready():
 	power_up_label_node = get_node(power_up_label)
 	power_up_animation_node = get_node(power_up_animation)
 	shake_camera_node = get_node(shake_camera)
+	can_shoot = true
 
 
 func _input(event):
-	if event.is_action_pressed("attack") and player_turn and not is_shooting:
+	if event.is_action_pressed("attack") and player_turn and can_shoot and not is_shooting:
 		print_debug("Firing missile")
 		is_shooting = true
 		enemies_hit_this_turn = 0

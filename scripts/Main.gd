@@ -12,7 +12,7 @@ func _ready():
 	$UI/HealthLabel.set_text("LIFE: " + str(Globals.health))
 	$UI/ScoreLabel.set_text("SCORE: " + str(Globals.score))
 	$UI/LevelLabel.set_text("LEVEL: " + str(Globals.level))
-	$UI/LevelCompleteLabel.hide()
+	$UI/BossTitleLabel.hide()
 	$UI/GameOverLabel.hide()
 	$UI/DemoLabel.hide()
 	$UI/RestartButton.hide()
