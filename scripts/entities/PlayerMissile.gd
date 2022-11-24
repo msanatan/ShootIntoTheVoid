@@ -64,20 +64,25 @@ func _on_VisibilityNotifier2D_screen_exited():
 	emit_signal("missile_destroyed")
 	queue_free()
 
+func kill():
+	var spawned_explosion = explosion.instance()
+	get_tree().get_root().add_child(spawned_explosion)
+	spawned_explosion.position = get_position()
+	spawned_explosion.emitting = true
+	emit_signal("missile_destroyed")
+	queue_free()
 
 func _on_PlayerMissile_area_entered(area):
 	var node_name = str(area.name.replace("@", "").replace(str(int(area.name)), ""))
 	if node_name == "Enemy":
-		if is_instance_valid($DestroyTimer):
-			$DestroyTimer.start($DestroyTimer.time_left + 1)
-		emit_signal("enemy_hit", area, self)
+		if area.is_shielded:
+			kill()
+		else:
+			if is_instance_valid($DestroyTimer):
+				$DestroyTimer.start($DestroyTimer.time_left + 1)
+			emit_signal("enemy_hit", area, self)
 	elif node_name == "Obstacle":
-		var spawned_explosion = explosion.instance()
-		get_tree().get_root().add_child(spawned_explosion)
-		spawned_explosion.position = get_position()
-		spawned_explosion.emitting = true
+		kill()
 		emit_signal("obstacle_hit", area)
-		emit_signal("missile_destroyed")
-		queue_free()
 	elif node_name == "PowerUp":
 		emit_signal("powerup_hit", area, self)

@@ -11,7 +11,7 @@ height = 0.0
 
 [node name="Enemy" instance=ExtResource( 1 )]
 missile = ExtResource( 3 )
-points = 100
+points = 150
 
 [node name="Thruster" parent="." index="0"]
 position = Vector2( -16, 8 )
@@ -19,8 +19,15 @@ position = Vector2( -16, 8 )
 [node name="Thruster2" parent="." index="1"]
 position = Vector2( 16, 8 )
 
+[node name="Shield" parent="." index="2"]
+visible = true
+scale = Vector2( 0.6, 0.6 )
+
 [node name="Sprite" parent="." index="3"]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="4"]
 shape = SubResource( 1 )
+
+[node name="OrderLabel" parent="." index="5"]
+visible = true

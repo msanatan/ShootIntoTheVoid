@@ -4,6 +4,10 @@ export(NodePath) var spawner
 export(Array, PackedScene) var easy_enemy_list
 export(Array, PackedScene) var medium_enemy_list
 export(Array, PackedScene) var hard_enemy_list
+export(Array, PackedScene) var easy_shielded_enemy_list
+export(Array, PackedScene) var medium_shielded_enemy_list
+export(Array, PackedScene) var hard_shielded_enemy_list
+export(Array, PackedScene) var boss_shielded_enemy_list
 export(Array, PackedScene) var small_obstacle_list
 export(Array, PackedScene) var medium_obstacle_list
 export(Array, PackedScene) var large_obstacle_list
@@ -38,13 +42,23 @@ func spawn_objects_for_level(level):
 		spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
 		spawner_node.spawn_random_from_list(3, large_obstacle_list, false)
 		spawner_node.spawn_random_from_list_with_chance(3, powerup_list, false, 10, 4)
-	elif level >= 5 && level < 10:
+	elif level > 5 && level < 10:
 		spawner_node.spawn_random_from_list(5, easy_enemy_list, true)
 		spawner_node.spawn_random_from_list(2, medium_enemy_list, true)
 		spawner_node.spawn_random_from_list(3, small_obstacle_list, false)
 		spawner_node.spawn_random_from_list(3, medium_obstacle_list, false)
 		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
 		spawner_node.spawn_random_from_list_with_chance(2, powerup_list, false, 10, 4)
+	elif level == 5:
+		var next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
+		next_order = spawner_node.spawn_random_shielded_from_list(3, medium_shielded_enemy_list, true, next_order)
+		next_order = spawner_node.spawn_random_shielded_from_list(3, hard_shielded_enemy_list, true, next_order)
+		next_order = spawner_node.spawn_random_shielded_from_list(1, boss_shielded_enemy_list, true, next_order, 1000)
+				
+		spawner_node.spawn_random_from_list(2, small_obstacle_list, false)
+		spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
+		spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
+		spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)		
 	elif level < 5:
 		spawner_node.spawn_random_from_list(4, easy_enemy_list, true)
 		spawner_node.spawn_random_from_list(1, medium_enemy_list, true)
@@ -59,7 +73,6 @@ func spawn_objects_for_level(level):
 func enemy_shoot():
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 	get_tree().call_group("enemy", "shoot", spawner_node.player_scene)
-
 
 func determine_turn_end():
 	num_shots_fired += 1

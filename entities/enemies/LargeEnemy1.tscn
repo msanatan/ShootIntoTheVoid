@@ -11,9 +11,10 @@ height = 0.0
 
 [node name="Enemy" instance=ExtResource( 1 )]
 missile = ExtResource( 3 )
+points = 300
 
-[node name="Sprite" parent="." index="2"]
+[node name="Sprite" parent="." index="3"]
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" parent="." index="4"]
 shape = SubResource( 1 )

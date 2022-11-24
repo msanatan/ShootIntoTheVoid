@@ -1,26 +1,27 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/enemies/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://images/entities/enemy_B.png" type="Texture" id=2]
-[ext_resource path="res://entities/enemies/SmallEnemyMissile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://images/entities/enemy_A.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/LargeEnemyMissile.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 resource_local_to_scene = true
-radius = 24.0
+radius = 56.0
 height = 0.0
 
 [node name="Enemy" instance=ExtResource( 1 )]
 missile = ExtResource( 3 )
-points = 100
+points = 350
 
-[node name="Thruster" parent="." index="0"]
-position = Vector2( -16, 8 )
-
-[node name="Thruster2" parent="." index="1"]
-position = Vector2( 16, 8 )
+[node name="Shield" parent="." index="2"]
+visible = true
+scale = Vector2( 1.4, 1.4 )
 
 [node name="Sprite" parent="." index="3"]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="4"]
 shape = SubResource( 1 )
+
+[node name="OrderLabel" parent="." index="5"]
+visible = true

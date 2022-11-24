@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player/PlayerMissile.tscn" type="PackedScene" id=2]
@@ -23,6 +23,10 @@
 [ext_resource path="res://entities/effects/PlayerExplosion.tscn" type="PackedScene" id=21]
 [ext_resource path="res://entities/ui/PlayerNameInput.tscn" type="PackedScene" id=22]
 [ext_resource path="res://images/ui/exit.png" type="Texture" id=23]
+[ext_resource path="res://entities/enemies/SmallShieldedEnemy1.tscn" type="PackedScene" id=24]
+[ext_resource path="res://entities/enemies/BossShieldedEnemy1.tscn" type="PackedScene" id=25]
+[ext_resource path="res://entities/enemies/MediumShieldedEnemy1.tscn" type="PackedScene" id=26]
+[ext_resource path="res://entities/enemies/LargeShieldedEnemy1.tscn" type="PackedScene" id=27]
 
 [sub_resource type="Environment" id=16]
 background_mode = 4
@@ -484,6 +488,10 @@ spawner = NodePath("../Spawner")
 easy_enemy_list = [ ExtResource( 7 ) ]
 medium_enemy_list = [ ExtResource( 11 ) ]
 hard_enemy_list = [ ExtResource( 6 ) ]
+easy_shielded_enemy_list = [ ExtResource( 24 ) ]
+medium_shielded_enemy_list = [ ExtResource( 26 ) ]
+hard_shielded_enemy_list = [ ExtResource( 27 ) ]
+boss_shielded_enemy_list = [ ExtResource( 25 ) ]
 small_obstacle_list = [ ExtResource( 10 ) ]
 medium_obstacle_list = [ ExtResource( 3 ) ]
 large_obstacle_list = [ ExtResource( 4 ) ]
@@ -606,10 +614,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 428.0
-margin_top = 348.5
-margin_right = 852.0
-margin_bottom = 371.499
+margin_left = -212.0
+margin_top = -11.5
+margin_right = 212.0
+margin_bottom = 11.499
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0.0313726, 1, 0, 1 )
 custom_fonts/font = SubResource( 13 )

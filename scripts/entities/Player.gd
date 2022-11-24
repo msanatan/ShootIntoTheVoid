@@ -104,8 +104,8 @@ func _on_PlayerMissile_powerup_hit(powerup, missile):
 
 
 func _on_PlayerMissile_enemy_hit(enemy, missile):
+	increase_score(enemy.points)
 	enemy.kill()
-	increase_score(100)
 
 	do_normal_shake()
 
@@ -118,6 +118,9 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 
 func increase_score(amount):
 	Globals.score += amount
+	power_up_label_node.set_text("+" + str(amount))
+	power_up_animation_node.stop()
+	power_up_animation_node.play("Show")
 	emit_signal("score_increased", Globals.score)
 
 
