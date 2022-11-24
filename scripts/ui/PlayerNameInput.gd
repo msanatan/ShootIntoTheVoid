@@ -11,10 +11,12 @@ func _ready():
 
 
 func _on_CancelButton_pressed():
+	get_tree().paused = false
 	hide()
 
 
 func _on_OkButton_pressed():
+	get_tree().paused = false
 	Globals.player_name = $NameTextEdit.text
 	if Globals.player_name.length() > 10:
 		Globals.player_name = Globals.player_name.substr(0, 10)

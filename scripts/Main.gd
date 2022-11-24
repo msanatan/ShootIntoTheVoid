@@ -147,3 +147,11 @@ func exit_to_title():
 
 func _on_SubmitScoreButton_pressed():
 	$UI/PlayerNameInput.popup()
+
+
+func _on_BackButton_pressed():
+	if Globals.score > 0:
+		get_tree().paused = true
+		$UI/PlayerNameInput.popup()
+	else:
+		exit_to_title()
