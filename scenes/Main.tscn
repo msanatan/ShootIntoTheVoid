@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player/PlayerMissile.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://entities/powerups/ScorePowerUp.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scripts/effects/ShakeCamera.gd" type="Script" id=20]
 [ext_resource path="res://entities/effects/PlayerExplosion.tscn" type="PackedScene" id=21]
+[ext_resource path="res://entities/ui/PlayerNameInput.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Environment" id=16]
 background_mode = 4
@@ -644,12 +645,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -86.5
+margin_left = -181.5
 margin_top = 63.0
-margin_right = 86.5
+margin_right = -8.5
 margin_bottom = 121.0
 custom_fonts/font = SubResource( 8 )
-text = "PLAY  AGAIN"
+text = "QUIT TO TITLE"
+
+[node name="SubmitScoreButton" type="Button" parent="UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 2.5
+margin_top = 63.0
+margin_right = 175.5
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 8 )
+text = "SUBMIT SCORE"
 
 [node name="PlayerShotProgress" type="TextureProgress" parent="UI"]
 modulate = Color( 1, 1, 1, 0 )
@@ -661,9 +675,12 @@ value = 100.0
 texture_under = ExtResource( 15 )
 texture_progress = ExtResource( 16 )
 
+[node name="PlayerNameInput" parent="UI" instance=ExtResource( 22 )]
+
 [node name="Orbits" type="CanvasLayer" parent="."]
 
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
 [connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]
 [connection signal="animation_finished" from="UI/TurnAnimationPlayer" to="." method="_on_TurnAnimationPlayer_animation_finished"]
 [connection signal="pressed" from="UI/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="UI/SubmitScoreButton" to="." method="_on_SubmitScoreButton_pressed"]

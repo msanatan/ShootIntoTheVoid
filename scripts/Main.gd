@@ -86,6 +86,7 @@ func _on_game_over():
 	$UI/GameOverLabel.show()
 	$UI/DemoLabel.show()
 	$UI/RestartButton.show()
+	$UI/SubmitScoreButton.show()
 	$UI/TurnLabel.hide()
 
 
@@ -133,9 +134,16 @@ func _on_Player_missile_destroyed():
 
 
 func _on_RestartButton_pressed():
+	exit_to_title()
+	
+func exit_to_title():
 	Globals.level = 1
 	Globals.health = 100
 	Globals.score = 0
 	queue_free()
 	var title_scene = load("res://scenes/Title.tscn")
 	FancyFade.horizontal_paint_brush(title_scene.instance())
+
+
+func _on_SubmitScoreButton_pressed():
+	$UI/PlayerNameInput.popup()
