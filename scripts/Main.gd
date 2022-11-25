@@ -28,7 +28,6 @@ func _ready():
 
 	show_turn_label("Player Turn")
 
-
 func _process(_delta):
 	$ParallaxBackground.scroll_offset.x += bg_scroll_speed * _delta
 	$ParallaxBackground.scroll_offset.y += bg_scroll_speed * _delta

@@ -4,6 +4,8 @@ var level = 1
 var health = 100
 var score = 0
 var player_name = ""
+var first_time = true
+var show_tutorial = true
 
 
 # Called when the node enters the scene tree for the first time.

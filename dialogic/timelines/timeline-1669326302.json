@@ -1,0 +1,19 @@
+{
+	"events": [
+		{
+			"character": "character-1667524492.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Looks like these guys have shields! You'll need to hit them in order from the unshielded pirate labelled 1 all the way to the boss labelled 4. As you hit them in order, the next pirate's ship in the sequence will have their shield removed. Good luck, Captain!"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1669326302.json",
+		"name": "Tutorial2"
+	}
+}

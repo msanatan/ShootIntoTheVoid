@@ -8,6 +8,7 @@ export(float) var bg_scroll_speed = 10.0
 func _ready():
 	modulate.a = 0
 	$TitleAnimationPlayer.play("FadeIn")
+	$TutorialCheckBox.pressed = Globals.first_time
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,4 +18,7 @@ func _process(delta):
 
 
 func _on_Button_pressed():
+	Globals.first_time = false
+	Globals.show_tutorial = $TutorialCheckBox.pressed
+	queue_free()
 	FancyFade.horizontal_paint_brush(main_scene.instance())

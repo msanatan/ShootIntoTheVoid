@@ -37,6 +37,12 @@ func handle_boss_sequence(level):
 			spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
 			spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
 			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+			
+			if Globals.show_tutorial:
+				spawner_node.player_scene.can_shoot = false
+				var tutorial2_dialog = Dialogic.start("Tutorial2")
+				tutorial2_dialog.connect("timeline_end", self, "tutorial_ended")
+				add_child(tutorial2_dialog)
 		elif level == 10:
 			next_order = spawner_node.spawn_random_shielded_from_list(3, easy_shielded_enemy_list, true, 1)
 			next_order = spawner_node.spawn_random_shielded_from_list(2, medium_shielded_enemy_list, true, next_order)
@@ -153,9 +159,17 @@ func spawn_objects_for_level(level):
 			spawner_node.spawn_random_from_list(2, medium_obstacle_list, false)
 			spawner_node.spawn_random_from_list(2, large_obstacle_list, false)
 			spawner_node.spawn_random_from_list_with_chance(1, powerup_list, false, 10, 4)
+			
+			if level == 1 and Globals.show_tutorial:
+				spawner_node.player_scene.can_shoot = false
+				var tutorial1_dialog = Dialogic.start("Tutorial1")
+				tutorial1_dialog.connect("timeline_end", self, "tutorial_ended")
+				add_child(tutorial1_dialog)
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
 
+func tutorial_ended(timeline_name):
+	spawner_node.player_scene.can_shoot = true
 
 func enemy_shoot():
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()

@@ -4,18 +4,16 @@
 			"character": "character-1667524492.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Wake up, Captain![br]...................\nStatus Report:[br]Shields: Critical[br]Hull: Critical[br]Fuel: Critical\nWeapons: Operational"
+			"text": "Wake up, Captain![br]...................[br]We're surrounded by space pirates! We must reroute all power to the main cannon!\nOur sensors will die if we do this, so you'll be shooting blind...[br]But the shot will be powerful enough to take out all the enemy ships.[br]* Move the mouse to aim your shot[br]* Use the arrow keys or WASD to move\n* When you click/tap, your shot will charge and all will go dark[br]* Hit as many enemies as possible but avoid the asteroids[br]* The yellow bar at the bottom shows how long your shot will last[br]* Each enemy you hit will give your shot a little additional time"
 		},
 		{
-			"character": "character-1667524492.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Proximity Alert![br]...................\nSituation Analysis:[br]We are currently surrounded by a squadron of space pirates. Unfortunately, there isn’t enough fuel to warp out of this system. The only option is to reroute all power to the main cannon for one last\npiercing shot to take out all enemy ships. The problem is if we do this, our sensors will die in a few seconds, so you’ll be shooting blind. It’s our only hope to get out of here in one piece!"
+			"event_id": "dialogic_022",
+			"transition_duration": 1
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
 		"file": "timeline-1667524577.json",
-		"name": "Tutorial"
+		"name": "Tutorial1"
 	}
 }
