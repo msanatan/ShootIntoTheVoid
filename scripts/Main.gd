@@ -37,9 +37,12 @@ func _process(_delta):
 	$ParallaxBackground.scroll_offset.x += bg_scroll_speed * _delta
 	$ParallaxBackground.scroll_offset.y += bg_scroll_speed * _delta
 
-	if Input.is_action_pressed("toggle_debug_tools"):
+func _input(event):
+	if Input.is_action_just_pressed ("toggle_debug_tools"):
 		$DebugTools.visible = !$DebugTools.visible
-
+		
+	if Input.is_action_just_pressed ("toggle_glow"):
+		$WorldEnvironment.environment.glow_enabled = !$WorldEnvironment.environment.glow_enabled
 
 func _on_level_cleared():
 	Globals.level += 1
