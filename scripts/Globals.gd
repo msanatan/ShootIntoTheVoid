@@ -6,6 +6,7 @@ var score = 0
 var player_name = ""
 var first_time = true
 var show_tutorial = true
+var perfect_round = false
 
 
 # Called when the node enters the scene tree for the first time.

@@ -27,3 +27,9 @@ func _on_OkButton_pressed():
 		hide()
 		get_tree().get_root().get_node("Main").exit_to_title()
 	
+
+
+func _on_QuitButton_pressed():
+	get_tree().paused = false
+	hide()
+	get_tree().get_root().get_node("Main").exit_to_title()

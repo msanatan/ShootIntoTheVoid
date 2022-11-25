@@ -21,14 +21,10 @@ func apply_powerup(player):
 	match powerup_type:
 		"health":
 			player.increase_health(50)
-			player.power_up_label_node.set_text("life up!")
-			player.power_up_animation_node.stop()
-			player.power_up_animation_node.play("Show")
+			player.show_powerup_message("life up!")
 		"score":
 			player.increase_score(250)
-			player.power_up_label_node.set_text("bonus points!")
-			player.power_up_animation_node.stop()
-			player.power_up_animation_node.play("Show")
+			player.show_powerup_message("bonus points!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

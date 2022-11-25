@@ -28,6 +28,7 @@ var player_turn := true
 var velocity := Vector2.ZERO
 var enemies_hit_this_turn := 0
 var total_enemies_this_turn := 0
+var total_enemies_for_level := 0
 
 
 func _ready():
@@ -118,12 +119,18 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 		missile.queue_free()
 		emit_signal("level_cleared")
 
+	if enemies_hit_this_turn == total_enemies_for_level:
+		Globals.perfect_round = true
 
-func increase_score(amount):
-	Globals.score += amount
-	power_up_label_node.set_text("+" + str(amount))
+func show_powerup_message(message):
+	power_up_label_node.set_text("+" + message)
 	power_up_animation_node.stop()
 	power_up_animation_node.play("Show")
+
+func increase_score(amount, show_message = true):
+	Globals.score += amount
+	if show_message:
+		show_powerup_message(str(amount))
 	emit_signal("score_increased", Globals.score)
 
 

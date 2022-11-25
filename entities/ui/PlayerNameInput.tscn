@@ -64,21 +64,30 @@ margin_bottom = 38.0
 custom_fonts/font = SubResource( 3 )
 caret_blink = true
 
-[node name="CancelButton" type="Button" parent="."]
-margin_left = 223.0
+[node name="QuitButton" type="Button" parent="."]
+margin_left = 175.0
 margin_top = 226.0
-margin_right = 313.0
+margin_right = 265.0
+margin_bottom = 250.0
+custom_fonts/font = SubResource( 4 )
+text = "Quit"
+
+[node name="CancelButton" type="Button" parent="."]
+margin_left = 279.0
+margin_top = 226.0
+margin_right = 369.0
 margin_bottom = 250.0
 custom_fonts/font = SubResource( 4 )
 text = "Cancel"
 
 [node name="OkButton" type="Button" parent="."]
-margin_left = 328.0
+margin_left = 384.0
 margin_top = 226.0
-margin_right = 414.0
+margin_right = 470.0
 margin_bottom = 250.0
 custom_fonts/font = SubResource( 4 )
 text = "Submit"
 
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="CancelButton" to="." method="_on_CancelButton_pressed"]
 [connection signal="pressed" from="OkButton" to="." method="_on_OkButton_pressed"]

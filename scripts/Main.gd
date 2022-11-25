@@ -27,6 +27,11 @@ func _ready():
 	$Player.connect("player_died", self, "_on_game_over")
 
 	show_turn_label("Player Turn")
+	
+	if Globals.perfect_round:
+		Globals.perfect_round = false
+		$Player.increase_score(1000, false)
+		$Player.show_powerup_message("perfect bonus: +1000!")
 
 func _process(_delta):
 	$ParallaxBackground.scroll_offset.x += bg_scroll_speed * _delta

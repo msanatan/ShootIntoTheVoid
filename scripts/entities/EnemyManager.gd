@@ -14,6 +14,7 @@ export(Array, PackedScene) var large_obstacle_list
 export(Array, PackedScene) var powerup_list
 var spawner_node = null
 var num_enemies = 0
+var num_enemies_at_start = 0
 var num_shots_fired = 0
 
 
@@ -167,6 +168,8 @@ func spawn_objects_for_level(level):
 				add_child(tutorial1_dialog)
 
 	num_enemies = get_tree().get_nodes_in_group("enemy").size()
+	num_enemies_at_start = num_enemies
+	spawner_node.player_scene.total_enemies_for_level = num_enemies_at_start
 
 func tutorial_ended(timeline_name):
 	spawner_node.player_scene.can_shoot = true
