@@ -144,6 +144,7 @@ func exit_to_title():
 	Globals.level = 1
 	Globals.health = 100
 	Globals.score = 0
+	Globals.perfect_round = false
 	queue_free()
 	var title_scene = load("res://scenes/Title.tscn")
 	FancyFade.horizontal_paint_brush(title_scene.instance())
