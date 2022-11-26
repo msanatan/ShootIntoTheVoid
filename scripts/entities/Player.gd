@@ -93,6 +93,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 		spawned_missile = missile.instance()
 		get_tree().get_root().add_child(spawned_missile)
 		spawned_missile.speed = 250
+		spawned_missile.is_ghost_shot = false
 		spawned_missile.position = $BulletSpawnPoint.global_position
 		spawned_missile.look_at(get_global_mouse_position())
 		spawned_missile.set_shot_progress_bar(shot_progress_bar_node)
@@ -179,13 +180,13 @@ func change_missile_speed(new_speed, duration = 3):
 		if is_instance_valid(spawned_missile):
 			spawned_missile.speed = prev_speed
 
-func change_light_scale(new_scale, duration = 3):
+func change_light_scale(new_scale, duration = 5):
 	var prev_scale = $Light2D.scale
 	$Light2D.scale = Vector2(new_scale, new_scale)
 	yield(get_tree().create_timer(duration), "timeout")
 	$Light2D.scale = prev_scale
 	
-func change_missile_light_scale(new_scale, duration = 3):
+func change_missile_light_scale(new_scale, duration = 5):
 	if is_instance_valid(spawned_missile):
 		var light = spawned_missile.get_node("Light2D")
 		var prev_scale = light.scale
@@ -193,3 +194,17 @@ func change_missile_light_scale(new_scale, duration = 3):
 		yield(get_tree().create_timer(duration), "timeout")
 		if is_instance_valid(spawned_missile):
 			light.scale = prev_scale
+			
+func apply_ghost_shot(alpha, duration = 5):
+	if is_instance_valid(spawned_missile):
+		var prev_alpha = spawned_missile.modulate.a
+		spawned_missile.modulate.a = alpha
+		spawned_missile.is_ghost_shot = true
+		yield(get_tree().create_timer(duration), "timeout")
+		if is_instance_valid(spawned_missile):
+			spawned_missile.modulate.a = prev_alpha
+			spawned_missile.is_ghost_shot = false
+			
+func extend_shot_timer(amount):
+	if is_instance_valid(spawned_missile):
+		spawned_missile.extend_destroy_timer(5)

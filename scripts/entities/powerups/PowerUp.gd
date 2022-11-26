@@ -32,8 +32,17 @@ func apply_powerup(player):
 			player.change_light_scale(1.6)
 			player.show_powerup_message("beacon!")
 		"illuminate":
-			player.change_missile_light_scale(0.8, 5)
+			player.change_missile_light_scale(0.8)
 			player.show_powerup_message("illuminate!")
+		"ghost":
+			player.apply_ghost_shot(0.2)
+			player.show_powerup_message("ghost shot!")
+		"time5":
+			player.extend_shot_timer(5)
+			player.show_powerup_message("time extended +5!")
+		"time10":
+			player.extend_shot_timer(10)
+			player.show_powerup_message("time extended +10!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -15,7 +15,7 @@ var is_following_cursor: bool = false
 var recalculate_angle: bool = false
 var previous_cursor_position := Vector2.ZERO
 var shot_progress_bar = null
-
+var is_ghost_shot = false
 
 func _ready():
 	velocity = Vector2.RIGHT
@@ -71,6 +71,10 @@ func kill():
 	spawned_explosion.emitting = true
 	emit_signal("missile_destroyed")
 	queue_free()
+	
+func extend_destroy_timer(amount):
+	if is_instance_valid($DestroyTimer):
+		$DestroyTimer.start($DestroyTimer.time_left + amount)
 
 func _on_PlayerMissile_area_entered(area):
 	var node_name = str(area.name.replace("@", "").replace(str(int(area.name)), ""))
@@ -78,11 +82,11 @@ func _on_PlayerMissile_area_entered(area):
 		if area.is_shielded:
 			kill()
 		else:
-			if is_instance_valid($DestroyTimer):
-				$DestroyTimer.start($DestroyTimer.time_left + 1)
+			extend_destroy_timer(1)
 			emit_signal("enemy_hit", area, self)
 	elif node_name == "Obstacle":
-		kill()
-		emit_signal("obstacle_hit", area)
+		if !is_ghost_shot:
+			kill()
+			emit_signal("obstacle_hit", area)
 	elif node_name == "PowerUp":
 		emit_signal("powerup_hit", area, self)
