@@ -4,7 +4,7 @@
 			"character": "character-1667524492.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Wake up, Captain![br]...................[br]We're surrounded by space pirates! We must reroute all power to the main cannon!\nOur sensors will die if we do this, so you'll be shooting blind...[br]But the shot will be powerful enough to take out all the enemy ships.[br]* Move the mouse to aim your shot[br]* Use the arrow keys or WASD to move\n* When you click/tap, your shot will charge and all will go dark[br]* Hit as many enemies as possible but avoid the asteroids[br]* The yellow bar at the bottom shows how long your shot will last[br]* Each enemy you hit will give your shot a little additional time"
+			"text": "Wake up, Captain![br]...................[br]We're surrounded by space pirates! We must reroute all power to the main cannon!\nOur sensors will die if we do this, so you'll be shooting blind...[br]But the shot will be powerful enough to take out all the enemy ships.[br]* Use to mouse to aim and the arrow keys or WASD to move[br]* When you click/tap, your shot will charge and all will go dark\n* Your shot will move towards your mouse/finger[br]* Hit as many enemies as possible but avoid the asteroids[br]* The yellow bar at the bottom shows how long your shot will last[br]* Each enemy you hit will give your shot a little additional time"
 		},
 		{
 			"event_id": "dialogic_022",
