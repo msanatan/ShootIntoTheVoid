@@ -22,6 +22,7 @@ var shot_progress_bar_node: TextureProgress = null
 var power_up_label_node = null
 var power_up_animation_node = null
 var shake_camera_node = null
+var spawned_missile = null
 
 var is_shooting := false
 var player_turn := true
@@ -38,6 +39,7 @@ func _ready():
 	shake_camera_node = get_node(shake_camera)
 	can_shoot = true
 
+	$Light2D.scale = Vector2(0.2, 0.2)
 
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and can_shoot and not is_shooting:
@@ -88,8 +90,9 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 	if anim_name == "LightsOn":
 		shot_progress_bar_node.show()
 		shot_progress_bar_node.value = 100
-		var spawned_missile = missile.instance()
+		spawned_missile = missile.instance()
 		get_tree().get_root().add_child(spawned_missile)
+		spawned_missile.speed = 250
 		spawned_missile.position = $BulletSpawnPoint.global_position
 		spawned_missile.look_at(get_global_mouse_position())
 		spawned_missile.set_shot_progress_bar(shot_progress_bar_node)
@@ -123,14 +126,14 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 		Globals.perfect_round = true
 
 func show_powerup_message(message):
-	power_up_label_node.set_text("+" + message)
+	power_up_label_node.set_text(message)
 	power_up_animation_node.stop()
 	power_up_animation_node.play("Show")
 
 func increase_score(amount, show_message = true):
 	Globals.score += amount
 	if show_message:
-		show_powerup_message(str(amount))
+		show_powerup_message("+" + str(amount))
 	emit_signal("score_increased", Globals.score)
 
 
@@ -167,3 +170,26 @@ func decrease_health(amount):
 func increase_health(amount):
 	Globals.health += amount
 	emit_signal("health_changed", Globals.health, true)
+	
+func change_missile_speed(new_speed, duration = 3):
+	if is_instance_valid(spawned_missile):
+		var prev_speed = spawned_missile.speed
+		spawned_missile.speed = new_speed
+		yield(get_tree().create_timer(duration), "timeout")
+		if is_instance_valid(spawned_missile):
+			spawned_missile.speed = prev_speed
+
+func change_light_scale(new_scale, duration = 3):
+	var prev_scale = $Light2D.scale
+	$Light2D.scale = Vector2(new_scale, new_scale)
+	yield(get_tree().create_timer(duration), "timeout")
+	$Light2D.scale = prev_scale
+	
+func change_missile_light_scale(new_scale, duration = 3):
+	if is_instance_valid(spawned_missile):
+		var light = spawned_missile.get_node("Light2D")
+		var prev_scale = light.scale
+		light.scale = Vector2(new_scale, new_scale)
+		yield(get_tree().create_timer(duration), "timeout")
+		if is_instance_valid(spawned_missile):
+			light.scale = prev_scale

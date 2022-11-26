@@ -32,6 +32,9 @@ func _ready():
 		Globals.perfect_round = false
 		$Player.increase_score(1000, false)
 		$Player.show_powerup_message("perfect bonus: +1000!")
+		
+	if OS.get_name() == "HTML5":
+		$WorldEnvironment.environment.glow_enabled = false
 
 func _process(_delta):
 	$ParallaxBackground.scroll_offset.x += bg_scroll_speed * _delta

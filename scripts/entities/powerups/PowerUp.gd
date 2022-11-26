@@ -25,6 +25,15 @@ func apply_powerup(player):
 		"score":
 			player.increase_score(250)
 			player.show_powerup_message("bonus points!")
+		"speed":
+			player.change_missile_speed(400)
+			player.show_powerup_message("speed boost!")
+		"beacon":
+			player.change_light_scale(1.6)
+			player.show_powerup_message("beacon!")
+		"illuminate":
+			player.change_missile_light_scale(0.8, 5)
+			player.show_powerup_message("illuminate!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
