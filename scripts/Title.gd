@@ -24,5 +24,9 @@ func _process(delta):
 func _on_Button_pressed():
 	Globals.first_time = false
 	Globals.show_tutorial = $TutorialCheckBox.pressed
+	$AudioStreamPlayer.play()
+
+
+func _on_AudioStreamPlayer_finished():
 	queue_free()
 	FancyFade.horizontal_paint_brush(main_scene.instance())
