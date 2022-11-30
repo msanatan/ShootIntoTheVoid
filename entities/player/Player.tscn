@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://images/entities/Player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/entities/Player.gd" type="Script" id=2]
 [ext_resource path="res://images/lights/light-texture.png" type="Texture" id=3]
 [ext_resource path="res://images/lights/light-sprite.png" type="Texture" id=4]
 [ext_resource path="res://entities/effects/EnemyExplosion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio/sfx/entities/player/lasersound-79881-trimmed.mp3" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.5, 44.5 )
@@ -113,5 +114,8 @@ emitting = false
 amount = 16
 speed_scale = 2.0
 process_material = SubResource( 10 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -45,6 +45,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and can_shoot and not is_shooting:
 		print_debug("Firing missile")
+		$AudioStreamPlayer.play(0.75)
 		is_shooting = true
 		enemies_hit_this_turn = 0
 		total_enemies_this_turn = get_tree().get_nodes_in_group("enemy").size()
