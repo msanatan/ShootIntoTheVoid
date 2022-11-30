@@ -27,25 +27,28 @@ func _ready():
 	$Player.connect("player_died", self, "_on_game_over")
 
 	show_turn_label("Player Turn")
-	
+
 	if Globals.perfect_round:
 		Globals.perfect_round = false
 		$Player.increase_score(1000, false)
 		$Player.show_powerup_message("perfect bonus: +1000!")
-		
+
 	if OS.get_name() == "HTML5":
 		$WorldEnvironment.environment.glow_enabled = false
+
 
 func _process(_delta):
 	$ParallaxBackground.scroll_offset.x += bg_scroll_speed * _delta
 	$ParallaxBackground.scroll_offset.y += bg_scroll_speed * _delta
 
+
 func _input(event):
-	if Input.is_action_just_pressed ("toggle_debug_tools"):
+	if Input.is_action_just_pressed("toggle_debug_tools"):
 		$DebugTools.visible = !$DebugTools.visible
-		
-	if Input.is_action_just_pressed ("toggle_glow"):
+
+	if Input.is_action_just_pressed("toggle_glow"):
 		$WorldEnvironment.environment.glow_enabled = !$WorldEnvironment.environment.glow_enabled
+
 
 func _on_level_cleared():
 	Globals.level += 1
@@ -145,7 +148,8 @@ func _on_Player_missile_destroyed():
 
 func _on_RestartButton_pressed():
 	exit_to_title()
-	
+
+
 func exit_to_title():
 	Globals.level = 1
 	Globals.health = 100

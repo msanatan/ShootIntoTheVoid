@@ -1,8 +1,10 @@
 extends Control
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	populate()
+
 
 func populate():
 	yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
@@ -18,6 +20,7 @@ func populate():
 		name_label.text = str(index) + ". " + score.player_name
 		score_label.text = str(int(score.score))
 		index += 1
+
 
 func _on_RefreshButton_pressed():
 	$Panel/RefreshButton.disabled = true

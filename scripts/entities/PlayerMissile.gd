@@ -17,6 +17,7 @@ var previous_cursor_position := Vector2.ZERO
 var shot_progress_bar = null
 var is_ghost_shot = false
 
+
 func _ready():
 	velocity = Vector2.RIGHT
 
@@ -64,6 +65,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	emit_signal("missile_destroyed")
 	queue_free()
 
+
 func kill():
 	var spawned_explosion = explosion.instance()
 	get_tree().get_root().add_child(spawned_explosion)
@@ -71,10 +73,12 @@ func kill():
 	spawned_explosion.emitting = true
 	emit_signal("missile_destroyed")
 	queue_free()
-	
+
+
 func extend_destroy_timer(amount):
 	if is_instance_valid($DestroyTimer):
 		$DestroyTimer.start($DestroyTimer.time_left + amount)
+
 
 func _on_PlayerMissile_area_entered(area):
 	var node_name = str(area.name.replace("@", "").replace(str(int(area.name)), ""))

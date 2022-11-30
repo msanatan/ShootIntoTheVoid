@@ -11,12 +11,14 @@ var perfect_round = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SilentWolf.configure({
-		"api_key": "w4I7LWbhYl9Lr3lFon4X29DC8LCSnArQ84Mp4u1Y",
-		"game_id": "ShootIntoTheVoid",
-		"game_version": "1.0.0",
-		"log_level": 1
-	})
+	SilentWolf.configure(
+		{
+			"api_key": "w4I7LWbhYl9Lr3lFon4X29DC8LCSnArQ84Mp4u1Y",
+			"game_id": "ShootIntoTheVoid",
+			"game_version": "1.0.0",
+			"log_level": 1
+		}
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

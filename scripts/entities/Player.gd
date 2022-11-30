@@ -41,6 +41,7 @@ func _ready():
 
 	$Light2D.scale = Vector2(0.2, 0.2)
 
+
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and can_shoot and not is_shooting:
 		print_debug("Firing missile")
@@ -126,10 +127,12 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 	if enemies_hit_this_turn == total_enemies_for_level:
 		Globals.perfect_round = true
 
+
 func show_powerup_message(message):
 	power_up_label_node.set_text(message)
 	power_up_animation_node.stop()
 	power_up_animation_node.play("Show")
+
 
 func increase_score(amount, show_message = true):
 	Globals.score += amount
@@ -171,7 +174,8 @@ func decrease_health(amount):
 func increase_health(amount):
 	Globals.health += amount
 	emit_signal("health_changed", Globals.health, true)
-	
+
+
 func change_missile_speed(new_speed, duration = 3):
 	if is_instance_valid(spawned_missile):
 		var prev_speed = spawned_missile.speed
@@ -180,12 +184,14 @@ func change_missile_speed(new_speed, duration = 3):
 		if is_instance_valid(spawned_missile):
 			spawned_missile.speed = prev_speed
 
+
 func change_light_scale(new_scale, duration = 5):
 	var prev_scale = $Light2D.scale
 	$Light2D.scale = Vector2(new_scale, new_scale)
 	yield(get_tree().create_timer(duration), "timeout")
 	$Light2D.scale = prev_scale
-	
+
+
 func change_missile_light_scale(new_scale, duration = 5):
 	if is_instance_valid(spawned_missile):
 		var light = spawned_missile.get_node("Light2D")
@@ -194,7 +200,8 @@ func change_missile_light_scale(new_scale, duration = 5):
 		yield(get_tree().create_timer(duration), "timeout")
 		if is_instance_valid(spawned_missile):
 			light.scale = prev_scale
-			
+
+
 func apply_ghost_shot(alpha, duration = 5):
 	if is_instance_valid(spawned_missile):
 		var prev_alpha = spawned_missile.modulate.a
@@ -204,7 +211,8 @@ func apply_ghost_shot(alpha, duration = 5):
 		if is_instance_valid(spawned_missile):
 			spawned_missile.modulate.a = prev_alpha
 			spawned_missile.is_ghost_shot = false
-			
+
+
 func extend_shot_timer(amount):
 	if is_instance_valid(spawned_missile):
 		spawned_missile.extend_destroy_timer(5)
