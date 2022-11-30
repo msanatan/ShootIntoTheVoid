@@ -1,12 +1,24 @@
 extends Node
 
+onready var background_music: AudioStreamPlayer = get_node("/root/BackgroundMusic")
 var game_over = false
 export(float) var bg_scroll_speed = 10.0
 var rand = RandomNumberGenerator.new()
+export(AudioStream) var background_music_file
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if (
+		not background_music.playing
+		or (
+			background_music.playing
+			and background_music.stream.resource_path  != background_music_file.resource_path
+		)
+	):
+		background_music.stream = background_music_file
+		background_music.play()
+
 	rand.randomize()
 	$EnemyManager.spawn_objects_for_level(Globals.level)
 	$UI/HealthLabel.set_text("LIFE: " + str(Globals.health))
