@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Eon - Ambient Scifi Music.mp3-8db4654f48d057ebcce5e4e578141cc0.mp3str"
+
+[deps]
+
+source_file="res://audio/music/Eon - Ambient Scifi Music.mp3"
+dest_files=[ "res://.import/Eon - Ambient Scifi Music.mp3-8db4654f48d057ebcce5e4e578141cc0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
