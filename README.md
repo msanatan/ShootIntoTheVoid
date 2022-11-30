@@ -17,3 +17,11 @@ Kenney's Simple Space - https://www.kenney.nl/assets/simple-space
 #### Music
 
 Title screen - [Eon - Ambient Sci Fi Music](https://www.youtube.com/watch?v=XVbvE0PJyss)
+Main screen
+	- [AlexiAction - Abstract World](https://pixabay.com/music/beats-abstract-world-127012/)
+
+
+#### Sfx
+
+Player shot - [tjcason - LaserSound](https://pixabay.com/sound-effects/lasersound-79881/)
+UI select - [StudioAlivioGlobal - Interface](https://pixabay.com/sound-effects/interface-124464/)
