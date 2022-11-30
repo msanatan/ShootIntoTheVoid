@@ -64,6 +64,8 @@ func _input(event):
 
 func _on_level_cleared():
 	Globals.level += 1
+	$LevelTransitionTimer.start()
+	yield($LevelTransitionTimer, "timeout")
 	do_random_transition()
 	queue_free()
 	get_tree().reload_current_scene()

@@ -919,6 +919,9 @@ texture_progress = ExtResource( 16 )
 
 [node name="Orbits" type="CanvasLayer" parent="."]
 
+[node name="LevelTransitionTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
 [connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]
 [connection signal="animation_finished" from="UI/TurnAnimationPlayer" to="." method="_on_TurnAnimationPlayer_animation_finished"]
