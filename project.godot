@@ -110,6 +110,7 @@ Transitions="*res://addons/transitions/Transitions.gd"
 FancyFade="*res://addons/transitions/FancyFade.gd"
 AntialiasedLine2DTexture="*res://addons/antialiased_line2d/texture.gd"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+BackgroundMusic="*res://scenes/BackgroundMusic.tscn"
 
 [display]
 
