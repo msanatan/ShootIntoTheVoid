@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/interface-124464.mp3-71069c8d1cf3507c5601a70552e3559f.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/ui/interface-124464.mp3"
+dest_files=[ "res://.import/interface-124464.mp3-71069c8d1cf3507c5601a70552e3559f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

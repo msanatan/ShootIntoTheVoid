@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/braam-sci-fi-brain-surgery-g-f-cinematic-trailer-sound-effects-123878 -trimmed.mp3-51fefa0da83f05601631450f2cb4eac1.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/entities/player/braam-sci-fi-brain-surgery-g-f-cinematic-trailer-sound-effects-123878 -trimmed.mp3"
+dest_files=[ "res://.import/braam-sci-fi-brain-surgery-g-f-cinematic-trailer-sound-effects-123878 -trimmed.mp3-51fefa0da83f05601631450f2cb4eac1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

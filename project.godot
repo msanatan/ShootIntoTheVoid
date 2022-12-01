@@ -110,6 +110,7 @@ Transitions="*res://addons/transitions/Transitions.gd"
 FancyFade="*res://addons/transitions/FancyFade.gd"
 AntialiasedLine2DTexture="*res://addons/antialiased_line2d/texture.gd"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+BackgroundMusic="*res://scenes/BackgroundMusic.tscn"
 
 [display]
 
@@ -191,6 +192,11 @@ toggle_debug_tools={
 toggle_glow={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":71,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+skip_level={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":72,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

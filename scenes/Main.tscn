@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player/PlayerMissile.tscn" type="PackedScene" id=2]
@@ -33,6 +33,11 @@
 [ext_resource path="res://entities/powerups/GhostPowerUp.tscn" type="PackedScene" id=31]
 [ext_resource path="res://entities/powerups/Time5PowerUp.tscn" type="PackedScene" id=32]
 [ext_resource path="res://entities/powerups/Time10PowerUp.tscn" type="PackedScene" id=33]
+[ext_resource path="res://audio/music/abstract-world-127012.mp3" type="AudioStream" id=34]
+[ext_resource path="res://audio/sfx/ui/interface-124464.mp3" type="AudioStream" id=35]
+[ext_resource path="res://audio/music/drone-space-main-9706.mp3" type="AudioStream" id=36]
+[ext_resource path="res://audio/sfx/emergency-alarm-with-reverb-2943104-trimmed.mp3" type="AudioStream" id=37]
+[ext_resource path="res://audio/sfx/entities/player/braam-sci-fi-brain-surgery-g-f-cinematic-trailer-sound-effects-123878 -trimmed.mp3" type="AudioStream" id=38]
 
 [sub_resource type="Environment" id=16]
 background_mode = 4
@@ -651,6 +656,10 @@ font_data = ExtResource( 14 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 9 )
+background_music_file = ExtResource( 34 )
+warning_sfx = ExtResource( 37 )
+boss_background_music_file = ExtResource( 36 )
+death_sfx = ExtResource( 38 )
 
 [node name="ShakeCamera" type="Camera2D" parent="."]
 current = true
@@ -916,6 +925,12 @@ texture_progress = ExtResource( 16 )
 [node name="PlayerNameInput" parent="UI" instance=ExtResource( 22 )]
 
 [node name="Orbits" type="CanvasLayer" parent="."]
+
+[node name="LevelTransitionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="UIAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 35 )
 
 [connection signal="fire_missile" from="Player" to="." method="_on_Player_fire_missile"]
 [connection signal="missile_destroyed" from="Player" to="." method="_on_Player_missile_destroyed"]

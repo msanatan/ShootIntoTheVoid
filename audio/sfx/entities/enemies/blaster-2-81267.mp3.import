@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/blaster-2-81267.mp3-2d9629de1c171c7d6d093b782c5151c7.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/entities/enemies/blaster-2-81267.mp3"
+dest_files=[ "res://.import/blaster-2-81267.mp3-2d9629de1c171c7d6d093b782c5151c7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

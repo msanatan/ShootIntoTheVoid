@@ -12,8 +12,10 @@ var order_num = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	is_shielded = $Shield.visible
 	is_ordered = $OrderLabel.visible
+
 
 func apply_shield(order):
 	if order == 1:
@@ -22,13 +24,16 @@ func apply_shield(order):
 	else:
 		$Shield.show()
 		is_shielded = true
-	
+
 	$OrderLabel.show()
 	$OrderLabel.text = str(order)
 	order_num = order
 	is_ordered = true
 
+
 func shoot(player):
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
 	var spawned_missile = missile.instance()
 	get_tree().get_root().add_child(spawned_missile)
 	spawned_missile.position = get_position()
@@ -48,15 +53,17 @@ func _on_EnemyMissile_missile_destroyed(entity, damage):
 		if is_instance_valid(enemy_manager):
 			enemy_manager.determine_turn_end()
 
+
 func determine_next_in_order(next):
 	if order_num == next:
 		$Shield.hide()
 		is_shielded = false
 
+
 func kill():
 	if is_ordered:
 		get_tree().call_group("enemy", "determine_next_in_order", order_num + 1)
-	
+
 	var spawned_explosion = explosion.instance()
 	get_tree().get_root().add_child(spawned_explosion)
 	spawned_explosion.position = get_position()
@@ -71,7 +78,7 @@ func set_player(player):
 func _physics_process(delta):
 	if is_instance_valid(player_node):
 		rotation = (player_node.global_position - global_position).angle() + PI / 2
-		$OrderLabel.rect_pivot_offset = $OrderLabel.rect_size/2
+		$OrderLabel.rect_pivot_offset = $OrderLabel.rect_size / 2
 		$OrderLabel.set_rotation(-rotation)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hit-drum-superclasher-cinematic-trailer-sound-effects-124759-trimmed.mp3-073a665520366b18c8fd20740709aaf8.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/entities/player/hit-drum-superclasher-cinematic-trailer-sound-effects-124759-trimmed.mp3"
+dest_files=[ "res://.import/hit-drum-superclasher-cinematic-trailer-sound-effects-124759-trimmed.mp3-073a665520366b18c8fd20740709aaf8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

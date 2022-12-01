@@ -1,12 +1,34 @@
 extends Node
 
+onready var background_music: AudioStreamPlayer = get_node("/root/BackgroundMusic")
 var game_over = false
 export(float) var bg_scroll_speed = 10.0
 var rand = RandomNumberGenerator.new()
+export(AudioStream) var background_music_file
+export(AudioStream) var warning_sfx
+export(AudioStream) var boss_background_music_file
+export(AudioStream) var death_sfx
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# TODO: centralize this check
+	var is_boss_level: bool = Globals.level % 5 == 0
+
+	if is_boss_level:
+		background_music.stream = boss_background_music_file
+		background_music.play()
+	else:
+		if (
+			not background_music.playing
+			or (
+				background_music.playing
+				and background_music.stream.resource_path != background_music_file.resource_path
+			)
+		):
+			background_music.stream = background_music_file
+			background_music.play()
+
 	rand.randomize()
 	$EnemyManager.spawn_objects_for_level(Globals.level)
 	$UI/HealthLabel.set_text("LIFE: " + str(Globals.health))
@@ -27,28 +49,36 @@ func _ready():
 	$Player.connect("player_died", self, "_on_game_over")
 
 	show_turn_label("Player Turn")
-	
+
 	if Globals.perfect_round:
 		Globals.perfect_round = false
 		$Player.increase_score(1000, false)
 		$Player.show_powerup_message("perfect bonus: +1000!")
-		
+
 	if OS.get_name() == "HTML5":
 		$WorldEnvironment.environment.glow_enabled = false
+
 
 func _process(_delta):
 	$ParallaxBackground.scroll_offset.x += bg_scroll_speed * _delta
 	$ParallaxBackground.scroll_offset.y += bg_scroll_speed * _delta
 
+
 func _input(event):
-	if Input.is_action_just_pressed ("toggle_debug_tools"):
+	if Input.is_action_just_pressed("toggle_debug_tools"):
 		$DebugTools.visible = !$DebugTools.visible
-		
-	if Input.is_action_just_pressed ("toggle_glow"):
+
+	if Input.is_action_just_pressed("toggle_glow"):
 		$WorldEnvironment.environment.glow_enabled = !$WorldEnvironment.environment.glow_enabled
+
+	if Input.is_action_just_pressed("skip_level") and $DebugTools.visible:
+		_on_level_cleared()
+
 
 func _on_level_cleared():
 	Globals.level += 1
+	$LevelTransitionTimer.start()
+	yield($LevelTransitionTimer, "timeout")
 	do_random_transition()
 	queue_free()
 	get_tree().reload_current_scene()
@@ -93,6 +123,8 @@ func do_random_transition():
 
 func _on_game_over():
 	game_over = true
+	$UIAudioStreamPlayer.stream = death_sfx
+	$UIAudioStreamPlayer.play()
 	$UI/GameOverLabel.show()
 	$UI/DemoLabel.show()
 	$UI/RestartButton.show()
@@ -145,7 +177,8 @@ func _on_Player_missile_destroyed():
 
 func _on_RestartButton_pressed():
 	exit_to_title()
-	
+
+
 func exit_to_title():
 	Globals.level = 1
 	Globals.health = 100
@@ -161,6 +194,8 @@ func _on_SubmitScoreButton_pressed():
 
 
 func _on_BackButton_pressed():
+	$UIAudioStreamPlayer.play()
+	yield($UIAudioStreamPlayer, "finished")
 	if Globals.score > 0:
 		get_tree().paused = true
 		$UI/PlayerNameInput.popup()

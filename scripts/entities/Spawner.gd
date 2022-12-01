@@ -63,8 +63,11 @@ func spawn_random_from_list(amount, list, rotate_to_player):
 		for _i in range(0, amount):
 			var random_entity = list[rand.randi_range(0, list.size() - 1)]
 			var entity = create_instance(random_entity, rotate_to_player)
-			
-func spawn_random_shielded_from_list(amount, list, rotate_to_player, starting_order, max_attempts = 10):
+
+
+func spawn_random_shielded_from_list(
+	amount, list, rotate_to_player, starting_order, max_attempts = 10
+):
 	if list.size() > 0:
 		var count = starting_order
 		for _i in range(0, amount):
@@ -75,6 +78,7 @@ func spawn_random_shielded_from_list(amount, list, rotate_to_player, starting_or
 				count += 1
 		return count
 	return starting_order
+
 
 func spawn_random_from_list_with_chance(amount, list, rotate_to_player, limit, chance):
 	if list.size() > 0:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/blaster-multiple-14893-trimmed.mp3-12d5873e7766a7ddbc9d785f6f32e424.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/entities/player/blaster-multiple-14893-trimmed.mp3"
+dest_files=[ "res://.import/blaster-multiple-14893-trimmed.mp3-12d5873e7766a7ddbc9d785f6f32e424.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

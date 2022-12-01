@@ -15,6 +15,12 @@ export(NodePath) var shot_progress_bar
 export(NodePath) var power_up_label
 export(NodePath) var power_up_animation
 export(NodePath) var shake_camera
+export(AudioStream) var charge_sfx
+export(AudioStream) var shoot_sfx
+export(AudioStream) var obstacle_hit_sfx
+export(AudioStream) var enemy_hit_sfx
+export(AudioStream) var damage_sfx
+export(AudioStream) var power_up_sfx
 export var speed = 150
 export(bool) var can_shoot = true
 
@@ -33,6 +39,7 @@ var total_enemies_for_level := 0
 
 
 func _ready():
+	randomize()
 	shot_progress_bar_node = get_node(shot_progress_bar)
 	power_up_label_node = get_node(power_up_label)
 	power_up_animation_node = get_node(power_up_animation)
@@ -41,9 +48,12 @@ func _ready():
 
 	$Light2D.scale = Vector2(0.2, 0.2)
 
+
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and can_shoot and not is_shooting:
 		print_debug("Firing missile")
+		$AudioStreamPlayer.stream = charge_sfx
+		$AudioStreamPlayer.play()
 		is_shooting = true
 		enemies_hit_this_turn = 0
 		total_enemies_this_turn = get_tree().get_nodes_in_group("enemy").size()
@@ -88,6 +98,8 @@ func _on_PlayerMissile_missile_destroyed():
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):
 	if anim_name == "LightsOn":
+		$AudioStreamPlayer.stream = shoot_sfx
+		$AudioStreamPlayer.play()
 		shot_progress_bar_node.show()
 		shot_progress_bar_node.value = 100
 		spawned_missile = missile.instance()
@@ -100,6 +112,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
 		spawned_missile.connect("enemy_hit", self, "_on_PlayerMissile_enemy_hit")
 		spawned_missile.connect("powerup_hit", self, "_on_PlayerMissile_powerup_hit")
+		spawned_missile.connect("obstacle_hit", self, "_on_PlayerMissile_obstacle_hit")
 		$ChargingParticles.emitting = false
 		do_normal_shake()
 	elif anim_name == "LightsOff":
@@ -108,14 +121,26 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 
 func _on_PlayerMissile_powerup_hit(powerup, missile):
 	do_normal_shake()
+	$AudioStreamPlayer.stream = power_up_sfx
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
 	powerup.collect(self)
+
+
+func _on_PlayerMissile_obstacle_hit(obstacle, missile):
+	do_normal_shake()
+	$AudioStreamPlayer.stream = obstacle_hit_sfx
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
 
 
 func _on_PlayerMissile_enemy_hit(enemy, missile):
 	increase_score(enemy.points)
 	enemy.kill()
-
 	do_normal_shake()
+	$AudioStreamPlayer.stream = enemy_hit_sfx
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
 
 	enemies_hit_this_turn += 1
 
@@ -126,10 +151,12 @@ func _on_PlayerMissile_enemy_hit(enemy, missile):
 	if enemies_hit_this_turn == total_enemies_for_level:
 		Globals.perfect_round = true
 
+
 func show_powerup_message(message):
 	power_up_label_node.set_text(message)
 	power_up_animation_node.stop()
 	power_up_animation_node.play("Show")
+
 
 func increase_score(amount, show_message = true):
 	Globals.score += amount
@@ -160,6 +187,9 @@ func decrease_health(amount):
 		get_tree().call_group("enemy_missile", "hide")
 		queue_free()
 	else:
+		$AudioStreamPlayer.stream = damage_sfx
+		$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+		$AudioStreamPlayer.play()
 		shake_camera_node.NOISE_SHAKE_SPEED = 30.0
 		shake_camera_node.SHAKE_DECAY_RATE = 3.0
 		shake_camera_node.NOISE_SHAKE_STRENGTH = 60.0
@@ -171,7 +201,8 @@ func decrease_health(amount):
 func increase_health(amount):
 	Globals.health += amount
 	emit_signal("health_changed", Globals.health, true)
-	
+
+
 func change_missile_speed(new_speed, duration = 3):
 	if is_instance_valid(spawned_missile):
 		var prev_speed = spawned_missile.speed
@@ -180,12 +211,14 @@ func change_missile_speed(new_speed, duration = 3):
 		if is_instance_valid(spawned_missile):
 			spawned_missile.speed = prev_speed
 
+
 func change_light_scale(new_scale, duration = 5):
 	var prev_scale = $Light2D.scale
 	$Light2D.scale = Vector2(new_scale, new_scale)
 	yield(get_tree().create_timer(duration), "timeout")
 	$Light2D.scale = prev_scale
-	
+
+
 func change_missile_light_scale(new_scale, duration = 5):
 	if is_instance_valid(spawned_missile):
 		var light = spawned_missile.get_node("Light2D")
@@ -194,7 +227,8 @@ func change_missile_light_scale(new_scale, duration = 5):
 		yield(get_tree().create_timer(duration), "timeout")
 		if is_instance_valid(spawned_missile):
 			light.scale = prev_scale
-			
+
+
 func apply_ghost_shot(alpha, duration = 5):
 	if is_instance_valid(spawned_missile):
 		var prev_alpha = spawned_missile.modulate.a
@@ -204,7 +238,8 @@ func apply_ghost_shot(alpha, duration = 5):
 		if is_instance_valid(spawned_missile):
 			spawned_missile.modulate.a = prev_alpha
 			spawned_missile.is_ghost_shot = false
-			
+
+
 func extend_shot_timer(amount):
 	if is_instance_valid(spawned_missile):
 		spawned_missile.extend_destroy_timer(5)

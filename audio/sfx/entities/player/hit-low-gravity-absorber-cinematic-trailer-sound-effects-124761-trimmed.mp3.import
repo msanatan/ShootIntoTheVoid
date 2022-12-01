@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761-trimmed.mp3-4f577ea081450aea9c8dcbc3cd655fd5.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/entities/player/hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761-trimmed.mp3"
+dest_files=[ "res://.import/hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761-trimmed.mp3-4f577ea081450aea9c8dcbc3cd655fd5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
