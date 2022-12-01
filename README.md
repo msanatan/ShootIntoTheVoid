@@ -25,3 +25,4 @@ Main screen
 
 Player shot - [tjcason - LaserSound](https://pixabay.com/sound-effects/lasersound-79881/)
 UI select - [StudioAlivioGlobal - Interface](https://pixabay.com/sound-effects/interface-124464/)
+Enemy shot - [tutarap - Blaster 2](https://pixabay.com/sound-effects/blaster-2-81267/)

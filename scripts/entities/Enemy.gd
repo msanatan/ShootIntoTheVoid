@@ -31,6 +31,8 @@ func apply_shield(order):
 
 
 func shoot(player):
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
 	var spawned_missile = missile.instance()
 	get_tree().get_root().add_child(spawned_missile)
 	spawned_missile.position = get_position()
