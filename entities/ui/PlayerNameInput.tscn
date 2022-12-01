@@ -89,7 +89,7 @@ margin_bottom = 250.0
 custom_fonts/font = SubResource( 4 )
 text = "Submit"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="UIAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
