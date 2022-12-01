@@ -5,19 +5,28 @@ var game_over = false
 export(float) var bg_scroll_speed = 10.0
 var rand = RandomNumberGenerator.new()
 export(AudioStream) var background_music_file
+export(AudioStream) var warning_sfx
+export(AudioStream) var boss_background_music_file
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    if (
-        not background_music.playing
-        or (
-            background_music.playing
-            and background_music.stream.resource_path  != background_music_file.resource_path
-        )
-    ):
-        background_music.stream = background_music_file
+    # TODO: centralize this check
+    var is_boss_level: bool = Globals.level % 5 == 0
+
+    if is_boss_level:
+        background_music.stream = boss_background_music_file
         background_music.play()
+    else:
+        if (
+            not background_music.playing
+            or (
+                background_music.playing
+                and background_music.stream.resource_path != background_music_file.resource_path
+            )
+        ):
+            background_music.stream = background_music_file
+            background_music.play()
 
     rand.randomize()
     $EnemyManager.spawn_objects_for_level(Globals.level)
@@ -60,6 +69,9 @@ func _input(event):
 
     if Input.is_action_just_pressed("toggle_glow"):
         $WorldEnvironment.environment.glow_enabled = !$WorldEnvironment.environment.glow_enabled
+
+    if Input.is_action_just_pressed("skip_level") and $DebugTools.visible:
+        _on_level_cleared()
 
 
 func _on_level_cleared():
