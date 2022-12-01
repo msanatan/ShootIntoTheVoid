@@ -7,6 +7,7 @@ var rand = RandomNumberGenerator.new()
 export(AudioStream) var background_music_file
 export(AudioStream) var warning_sfx
 export(AudioStream) var boss_background_music_file
+export(AudioStream) var death_sfx
 
 
 # Called when the node enters the scene tree for the first time.
@@ -122,6 +123,8 @@ func do_random_transition():
 
 func _on_game_over():
     game_over = true
+    $UIAudioStreamPlayer.stream = death_sfx
+    $UIAudioStreamPlayer.play()
     $UI/GameOverLabel.show()
     $UI/DemoLabel.show()
     $UI/RestartButton.show()

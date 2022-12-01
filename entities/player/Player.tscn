@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://images/entities/Player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/entities/Player.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://audio/sfx/entities/player/blaster-multiple-14893-trimmed.mp3" type="AudioStream" id=7]
 [ext_resource path="res://audio/sfx/entities/player/hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761-trimmed.mp3" type="AudioStream" id=8]
 [ext_resource path="res://audio/sfx/entities/enemies/hit-brutal-puncher-cinematic-trailer-sound-effects-124760-trimmed.mp3" type="AudioStream" id=9]
-[ext_resource path="res://audio/sfx/entities/player/braam-sci-fi-brain-surgery-g-f-cinematic-trailer-sound-effects-123878 -trimmed.mp3" type="AudioStream" id=10]
 [ext_resource path="res://audio/sfx/entities/player/hit-drum-superclasher-cinematic-trailer-sound-effects-124759-trimmed.mp3" type="AudioStream" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -93,7 +92,6 @@ shoot_sfx = ExtResource( 7 )
 obstacle_hit_sfx = ExtResource( 8 )
 enemy_hit_sfx = ExtResource( 9 )
 damage_sfx = ExtResource( 11 )
-death_sfx = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
