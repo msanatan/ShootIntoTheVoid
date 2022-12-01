@@ -15,6 +15,8 @@ export(NodePath) var shot_progress_bar
 export(NodePath) var power_up_label
 export(NodePath) var power_up_animation
 export(NodePath) var shake_camera
+export(AudioStream) var charge_sfx
+export(AudioStream) var shoot_sfx
 export var speed = 150
 export(bool) var can_shoot = true
 
@@ -45,7 +47,8 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("attack") and player_turn and can_shoot and not is_shooting:
 		print_debug("Firing missile")
-		$AudioStreamPlayer.play(0.75)
+		$AudioStreamPlayer.stream = charge_sfx
+		$AudioStreamPlayer.play()
 		is_shooting = true
 		enemies_hit_this_turn = 0
 		total_enemies_this_turn = get_tree().get_nodes_in_group("enemy").size()
@@ -90,6 +93,8 @@ func _on_PlayerMissile_missile_destroyed():
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):
 	if anim_name == "LightsOn":
+		$AudioStreamPlayer.stream = shoot_sfx
+		$AudioStreamPlayer.play()
 		shot_progress_bar_node.show()
 		shot_progress_bar_node.value = 100
 		spawned_missile = missile.instance()

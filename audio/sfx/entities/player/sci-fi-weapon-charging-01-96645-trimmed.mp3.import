@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sci-fi-weapon-charging-01-96645-trimmed.mp3-98e0b40ba91a96947a4a7474714f1baf.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/entities/player/sci-fi-weapon-charging-01-96645-trimmed.mp3"
+dest_files=[ "res://.import/sci-fi-weapon-charging-01-96645-trimmed.mp3-98e0b40ba91a96947a4a7474714f1baf.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

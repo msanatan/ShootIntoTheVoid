@@ -23,6 +23,10 @@ Main screen
 
 #### Sfx
 
-Player shot - [tjcason - LaserSound](https://pixabay.com/sound-effects/lasersound-79881/)
+Player shot
+
+- [Tim Verberne - Sci-Fi Weapon Charging 01](https://pixabay.com/sound-effects/sci-fi-weapon-charging-01-96645/)
+- [C3Sabertooth - Blaster](https://pixabay.com/sound-effects/blaster-multiple-14893/)
+
 UI select - [StudioAlivioGlobal - Interface](https://pixabay.com/sound-effects/interface-124464/)
 Enemy shot - [tutarap - Blaster 2](https://pixabay.com/sound-effects/blaster-2-81267/)
