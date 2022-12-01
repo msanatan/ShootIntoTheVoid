@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/emergency-alarm-with-reverb-2943104-trimmed.mp3-6a5dad0895cf0904c048607f8184f7f7.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/emergency-alarm-with-reverb-2943104-trimmed.mp3"
+dest_files=[ "res://.import/emergency-alarm-with-reverb-2943104-trimmed.mp3-6a5dad0895cf0904c048607f8184f7f7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
