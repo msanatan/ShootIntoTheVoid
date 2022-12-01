@@ -20,6 +20,7 @@ export(AudioStream) var shoot_sfx
 export(AudioStream) var obstacle_hit_sfx
 export(AudioStream) var enemy_hit_sfx
 export(AudioStream) var damage_sfx
+export(AudioStream) var power_up_sfx
 export var speed = 150
 export(bool) var can_shoot = true
 
@@ -120,6 +121,9 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 
 func _on_PlayerMissile_powerup_hit(powerup, missile):
 	do_normal_shake()
+	$AudioStreamPlayer.stream = power_up_sfx
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
 	powerup.collect(self)
 
 
