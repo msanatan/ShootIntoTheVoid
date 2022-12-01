@@ -17,8 +17,11 @@ Kenney's Simple Space - https://www.kenney.nl/assets/simple-space
 #### Music
 
 Title screen - [Eon - Ambient Sci Fi Music](https://www.youtube.com/watch?v=XVbvE0PJyss)
+
 Main screen
-	- [AlexiAction - Abstract World](https://pixabay.com/music/beats-abstract-world-127012/)
+
+- [AlexiAction - Abstract World](https://pixabay.com/music/beats-abstract-world-127012/)
+- [Daddy s Music - Drone Space (Main)](https://pixabay.com/music/ambient-drone-space-main-9706/)
 
 
 #### Sfx
@@ -29,4 +32,5 @@ Player shot
 - [C3Sabertooth - Blaster](https://pixabay.com/sound-effects/blaster-multiple-14893/)
 
 UI select - [StudioAlivioGlobal - Interface](https://pixabay.com/sound-effects/interface-124464/)
+
 Enemy shot - [tutarap - Blaster 2](https://pixabay.com/sound-effects/blaster-2-81267/)
