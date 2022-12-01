@@ -19,6 +19,8 @@ export(AudioStream) var charge_sfx
 export(AudioStream) var shoot_sfx
 export(AudioStream) var obstacle_hit_sfx
 export(AudioStream) var enemy_hit_sfx
+export(AudioStream) var damage_sfx
+export(AudioStream) var death_sfx
 export var speed = 150
 export(bool) var can_shoot = true
 

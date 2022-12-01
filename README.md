@@ -39,3 +39,5 @@ Impact
 
 - [SUBMORITY - HIT LOW Gravity Absorber | Cinematic Trailer Sound Effects](https://pixabay.com/sound-effects/hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761/)
 - [SUBMORITY - HIT Brutal Puncher | Cinematic Trailer Sound Effects](https://pixabay.com/sound-effects/hit-brutal-puncher-cinematic-trailer-sound-effects-124760/)
+- [SUBMORITY - HIT DRUM Superclasher | Cinematic Trailer Sound Effects](https://pixabay.com/sound-effects/hit-drum-superclasher-cinematic-trailer-sound-effects-124759/)
+- [SUBMORITY - BRAAM SCI-FI Brain Surgery (G-F#) | Cinematic Trailer Sound Effects](https://pixabay.com/sound-effects/braam-sci-fi-brain-surgery-g-f-cinematic-trailer-sound-effects-123878/)
