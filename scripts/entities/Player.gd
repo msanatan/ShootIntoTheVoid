@@ -20,7 +20,6 @@ export(AudioStream) var shoot_sfx
 export(AudioStream) var obstacle_hit_sfx
 export(AudioStream) var enemy_hit_sfx
 export(AudioStream) var damage_sfx
-export(AudioStream) var death_sfx
 export var speed = 150
 export(bool) var can_shoot = true
 
@@ -184,6 +183,9 @@ func decrease_health(amount):
 		get_tree().call_group("enemy_missile", "hide")
 		queue_free()
 	else:
+		$AudioStreamPlayer.stream = damage_sfx
+		$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+		$AudioStreamPlayer.play()
 		shake_camera_node.NOISE_SHAKE_SPEED = 30.0
 		shake_camera_node.SHAKE_DECAY_RATE = 3.0
 		shake_camera_node.NOISE_SHAKE_STRENGTH = 60.0
