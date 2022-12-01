@@ -194,9 +194,13 @@ func _on_SubmitScoreButton_pressed():
 
 
 func _on_BackButton_pressed():
+	$UI/BackButton.disabled = true
+	$UI/BackButton.text = "Loading..."
 	$UIAudioStreamPlayer.play()
 	yield($UIAudioStreamPlayer, "finished")
 	if Globals.score > 0:
+		$UI/BackButton.disabled = false
+		$UI/BackButton.text = ""
 		get_tree().paused = true
 		$UI/PlayerNameInput.popup()
 	else:

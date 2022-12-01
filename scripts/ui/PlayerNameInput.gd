@@ -5,23 +5,32 @@ extends PopupDialog
 func _ready():
 	$NameTextEdit.text = Globals.player_name
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 
 func _on_CancelButton_pressed():
+	$CancelButton.disabled = true
+	$NameLabel.text = "Loading..."
 	$UIAudioStreamPlayer.play()
 	yield($UIAudioStreamPlayer, "finished")
 	get_tree().paused = false
+	$CancelButton.disabled = false
+	$NameLabel.text = "Please Enter Your Name"
 	hide()
 
 
 func _on_OkButton_pressed():
+	$OkButton.disabled = true
+	$NameLabel.text = "Loading..."
+	
 	$UIAudioStreamPlayer.play()
 	yield($UIAudioStreamPlayer, "finished")
 
+	$OkButton.disabled = false
+	$NameLabel.text = "Please Enter Your Name"
+	
 	get_tree().paused = false
 	Globals.player_name = $NameTextEdit.text
 	if Globals.player_name.length() > 10:
@@ -37,8 +46,14 @@ func _on_OkButton_pressed():
 
 
 func _on_QuitButton_pressed():
+	$QuitButton.disabled = true
+	$NameLabel.text = "Loading..."
+	
 	$UIAudioStreamPlayer.play()
 	yield($UIAudioStreamPlayer, "finished")
 	get_tree().paused = false
 	hide()
+	$QuitButton.disabled = false
+	$NameLabel.text = "Please Enter Your Name"
+	
 	get_tree().get_root().get_node("Main").exit_to_title()

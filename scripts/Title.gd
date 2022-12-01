@@ -13,6 +13,7 @@ func _ready():
 	background_music.play()
 	$TitleAnimationPlayer.play("FadeIn")
 	$TutorialCheckBox.pressed = Globals.first_time
+	$Button.disabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,6 +25,8 @@ func _process(delta):
 func _on_Button_pressed():
 	Globals.first_time = false
 	Globals.show_tutorial = $TutorialCheckBox.pressed
+	$Button.disabled = true
+	$Button.text = "Loading..."
 	$AudioStreamPlayer.play()
 
 
