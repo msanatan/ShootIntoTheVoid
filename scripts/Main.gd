@@ -179,6 +179,8 @@ func _on_SubmitScoreButton_pressed():
 
 
 func _on_BackButton_pressed():
+	$AudioStreamPlayer.play()
+	yield($AudioStreamPlayer, "finished")
 	if Globals.score > 0:
 		get_tree().paused = true
 		$UI/PlayerNameInput.popup()

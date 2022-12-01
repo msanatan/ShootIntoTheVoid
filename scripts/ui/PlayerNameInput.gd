@@ -12,11 +12,16 @@ func _ready():
 
 
 func _on_CancelButton_pressed():
+	$AudioStreamPlayer.play()
+	yield($AudioStreamPlayer, "finished")
 	get_tree().paused = false
 	hide()
 
 
 func _on_OkButton_pressed():
+	$AudioStreamPlayer.play()
+	yield($AudioStreamPlayer, "finished")
+
 	get_tree().paused = false
 	Globals.player_name = $NameTextEdit.text
 	if Globals.player_name.length() > 10:
@@ -32,6 +37,8 @@ func _on_OkButton_pressed():
 
 
 func _on_QuitButton_pressed():
+	$AudioStreamPlayer.play()
+	yield($AudioStreamPlayer, "finished")
 	get_tree().paused = false
 	hide()
 	get_tree().get_root().get_node("Main").exit_to_title()
