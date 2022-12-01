@@ -34,3 +34,8 @@ Player shot
 UI select - [StudioAlivioGlobal - Interface](https://pixabay.com/sound-effects/interface-124464/)
 
 Enemy shot - [tutarap - Blaster 2](https://pixabay.com/sound-effects/blaster-2-81267/)
+
+Impact
+
+- [SUBMORITY - HIT LOW Gravity Absorber | Cinematic Trailer Sound Effects](https://pixabay.com/sound-effects/hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761/)
+- [SUBMORITY - HIT Brutal Puncher | Cinematic Trailer Sound Effects](https://pixabay.com/sound-effects/hit-brutal-puncher-cinematic-trailer-sound-effects-124760/)

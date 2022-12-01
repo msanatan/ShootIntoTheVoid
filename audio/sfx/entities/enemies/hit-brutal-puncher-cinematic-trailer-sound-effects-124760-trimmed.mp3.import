@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hit-brutal-puncher-cinematic-trailer-sound-effects-124760-trimmed.mp3-bc1747dfcfebbe4d4d858f9dfdccd0c3.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/entities/enemies/hit-brutal-puncher-cinematic-trailer-sound-effects-124760-trimmed.mp3"
+dest_files=[ "res://.import/hit-brutal-puncher-cinematic-trailer-sound-effects-124760-trimmed.mp3-bc1747dfcfebbe4d4d858f9dfdccd0c3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

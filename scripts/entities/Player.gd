@@ -17,6 +17,8 @@ export(NodePath) var power_up_animation
 export(NodePath) var shake_camera
 export(AudioStream) var charge_sfx
 export(AudioStream) var shoot_sfx
+export(AudioStream) var obstacle_hit_sfx
+export(AudioStream) var enemy_hit_sfx
 export var speed = 150
 export(bool) var can_shoot = true
 
@@ -35,6 +37,7 @@ var total_enemies_for_level := 0
 
 
 func _ready():
+	randomize()
 	shot_progress_bar_node = get_node(shot_progress_bar)
 	power_up_label_node = get_node(power_up_label)
 	power_up_animation_node = get_node(power_up_animation)
@@ -107,6 +110,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 		spawned_missile.connect("missile_destroyed", self, "_on_PlayerMissile_missile_destroyed")
 		spawned_missile.connect("enemy_hit", self, "_on_PlayerMissile_enemy_hit")
 		spawned_missile.connect("powerup_hit", self, "_on_PlayerMissile_powerup_hit")
+		spawned_missile.connect("obstacle_hit", self, "_on_PlayerMissile_obstacle_hit")
 		$ChargingParticles.emitting = false
 		do_normal_shake()
 	elif anim_name == "LightsOff":
@@ -118,11 +122,20 @@ func _on_PlayerMissile_powerup_hit(powerup, missile):
 	powerup.collect(self)
 
 
+func _on_PlayerMissile_obstacle_hit(obstacle, missile):
+	do_normal_shake()
+	$AudioStreamPlayer.stream = obstacle_hit_sfx
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
+
+
 func _on_PlayerMissile_enemy_hit(enemy, missile):
 	increase_score(enemy.points)
 	enemy.kill()
-
 	do_normal_shake()
+	$AudioStreamPlayer.stream = enemy_hit_sfx
+	$AudioStreamPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
 
 	enemies_hit_this_turn += 1
 

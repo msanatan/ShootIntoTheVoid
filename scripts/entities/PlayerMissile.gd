@@ -85,6 +85,7 @@ func _on_PlayerMissile_area_entered(area):
 	if node_name == "Enemy":
 		if area.is_shielded:
 			kill()
+			emit_signal("obstacle_hit", area)
 		else:
 			extend_destroy_timer(1)
 			emit_signal("enemy_hit", area, self)
